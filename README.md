@@ -1,4 +1,7 @@
 # terodox.tech
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b1e77f0c-371a-4d6e-8d6b-a1e4a2922f88/deploy-status)](https://app.netlify.com/sites/terodox-tech/deploys)
+
 The source code for the terodox.tech website.
 
 # HeroBlog
