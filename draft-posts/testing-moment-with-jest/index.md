@@ -10,7 +10,7 @@ author: Andy Desmarais
 
 The date/time library MomentJs is among the most powerful date/time libraries available in javascript. It handles dates, times, and timezone which allow almost any developer to breath a pretty big sigh of relief. But, and you saw this coming, it is incredibly challenging to test. The composition of the moment object is such that it is both a function and an object which creates significant challenges when it comes to testing.
 
-## TL;DR Use jest.mock
+## TL;DR Use jest.mock and monkey patch your way to functional
 
 The quick and dirty is that we can spy on any method returned from the moment function by creating a fake version that has the methods we need spied, then mapping all of the real properties back onto our fake method. The nuance to this is interesting and discusses in depth below.
 
@@ -66,4 +66,8 @@ jest.mock('moment', () => {
 });
 ```
 
-I hope this will save you the several hours it cost me while troubleshooting this issue. Do you have a better way to handle this? Leave it in the comments!
+I hope this will save you the several hours it cost me while troubleshooting this issue.
+
+## It's ok to be wrong
+
+Do you have a better way to handle this? Leave it in the comments!
