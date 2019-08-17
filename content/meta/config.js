@@ -28,7 +28,7 @@ module.exports = {
   // Replace your email adress with md5-code.
   // Example https://www.gravatar.com/avatar/g.strainovic@gmail.com ->
   // gravatarImgMd5: "https://www.gravatar.com/avatar/1db853e4df386e8f699e4b35505dd8c6",
-  gravatarImgMd5: "9a81b55e78344e8425eb5cee3badcc3e",
+  gravatarImgMd5: "https://s.gravatar.com/avatar/e07a26bb4275e4eedafd68a8b9fe7c95",
 
   // social
   authorSocialLinks: [
