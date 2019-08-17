@@ -6,7 +6,7 @@ cover: aws-iam.png
 author: Andy Desmarais
 ---
 
-<img class="right" src="/images/own/2018-01-16-awsudo/aws-iam.png" title="AWS IAM" width="300" style="background-color: #FFF;">
+<img class="right" src="aws-iam.png" title="AWS IAM" width="300" style="background-color: #FFF;">
 
 Meltwater just released awsudo, an npm package designed to make assuming AWS IAM roles on the command line trivial.
 
