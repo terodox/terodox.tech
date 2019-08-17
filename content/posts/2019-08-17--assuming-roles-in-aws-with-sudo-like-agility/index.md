@@ -2,7 +2,7 @@
 title: "Assuming roles in AWS with sudo-like agility"
 comments: true
 category: AWS
-cover: aws-iam.png
+cover: aws-iam-cover.png
 author: Andy Desmarais
 ---
 
