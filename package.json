@@ -4,7 +4,7 @@
   "author": "Andy Desmarais <terodox+gitbub@gmail.com",
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "scripts/generate-env && gatsby build",
     "develop": "gatsby develop",
     "lint-errors": "eslint src/**/*.{js,jsx} --quiet",
     "lint": "eslint src/**/*.{js,jsx}",

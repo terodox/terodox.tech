@@ -4,6 +4,8 @@
 
 The source code for the terodox.tech website.
 
+Original starter from [HeroBlog](https://github.com/greglobinski/gatsby-starter-hero-blog)
+
 # HeroBlog
 
 A [GatsbyJS](https://www.gatsbyjs.org/) blog starter. <br /><br />
