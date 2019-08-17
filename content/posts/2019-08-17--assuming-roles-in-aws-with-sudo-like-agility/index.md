@@ -1,7 +1,7 @@
 ---
 title: "Assuming roles in AWS with sudo-like agility"
 comments: true
-categories: [AWS, awscli, IAM, Roles, Security, cli, command-line]
+category: AWS
 author: Andy Desmarais
 ---
 
