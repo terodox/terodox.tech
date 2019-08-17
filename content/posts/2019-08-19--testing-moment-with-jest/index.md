@@ -12,7 +12,7 @@ The date/time library MomentJs is among the most powerful date/time libraries av
 
 ## TL;DR Use jest.mock and monkey patch your way to functional
 
-The quick and dirty is that we can spy on any method returned from the moment function by creating a fake version that has the methods we need spied, then mapping all of the real properties back onto our fake method. The nuance to this is interesting and discusses in depth below.
+The quick and dirty is that we can spy on any method returned from the moment function by creating a fake version that has the methods we need spied, then mapping all of the real properties back onto our fake method. The nuance to this is interesting and discussed in depth below.
 
 ```javascript
 jest.mock('moment', () => {
