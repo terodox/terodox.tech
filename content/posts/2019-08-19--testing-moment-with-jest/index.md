@@ -44,7 +44,7 @@ This is where moment being a method with properties really hurts. Moment-timezon
 
 ## So what do I have to do!?
 
-The solution is not complex, but it is nuanced. The basic idea is to get an actual instance of the moment object first using the "require.requireActual" jest.mock helper. Then we can spyOn an of the moment methods we need to, including tz() if necessary!
+The solution is not complex, but it is nuanced. The basic idea is to get an actual instance of the moment object first using the "require.requireActual" jest.mock helper. Then we can spyOn any of the moment methods we need to, including tz() if necessary!
 
 Once we have our instance with the spied methods, we create a fake function. This will be our stand-in moment method. Keeping in mind that moment is a method with properties, we then apply all of the properties from our real instance onto our fake method allowing moment-timezone to work again.
 
