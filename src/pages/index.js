@@ -71,7 +71,7 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
     posts: allMarkdownRemark(
@@ -127,4 +127,4 @@ export const query = graphql`
   }
 `;
 
-//hero-background
+// hero-background

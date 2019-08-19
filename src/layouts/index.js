@@ -189,7 +189,7 @@ Layout.propTypes = {
 
 export default Layout;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 /*
 export const postQuery = graphql`
   query LayoutQuery {
