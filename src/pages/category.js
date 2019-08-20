@@ -37,7 +37,8 @@ const CategoryPage = props => {
 
   const categoryList = [];
 
-  for (var key in categories) {
+  // eslint-disable-next-line guard-for-in,no-unused-vars
+  for (const key in categories) {
     categoryList.push([key, categories[key]]);
   }
 
@@ -82,7 +83,7 @@ CategoryPage.propTypes = {
 
 export default CategoryPage;
 
-//eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 export const query = graphql`
   query PostsQuery {
     posts: allMarkdownRemark(
