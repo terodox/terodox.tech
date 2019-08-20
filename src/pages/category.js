@@ -37,7 +37,7 @@ const CategoryPage = props => {
 
   const categoryList = [];
 
-  // eslint-disable-next-line guard-for-in
+  // eslint-disable-next-line guard-for-in,no-unused-vars
   for (const key in categories) {
     categoryList.push([key, categories[key]]);
   }
