@@ -23,7 +23,7 @@ const PostShare = props => {
     theme
   } = props;
 
-  const url = config.siteUrl + config.pathPrefix + slug;
+  const url = config.siteUrl + slug;
 
   const iconSize = 36;
   const filter = count => (count > 0 ? count : "");
@@ -44,7 +44,7 @@ const PostShare = props => {
           </TwitterShareButton>
           <FacebookShareButton
             url={url}
-            quote={`${title} - ${excerpt}`}
+            quote={title}
             additionalProps={{
               "aria-label": "Facebook share"
             }}
