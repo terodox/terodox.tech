@@ -44,6 +44,7 @@ const Post = props => {
         <Share post={post} theme={theme} />
         <Author note={authornote} theme={theme} />
         <NextPrev next={nextPost} prev={prevPost} theme={theme} />
+        <div>{slug}</div>
         <Comments slug={slug} facebook={facebook} theme={theme} />
       </footer>
     </React.Fragment>

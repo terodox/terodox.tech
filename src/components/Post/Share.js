@@ -44,7 +44,7 @@ const PostShare = props => {
           </TwitterShareButton>
           <FacebookShareButton
             url={url}
-            quote={`${title} - ${excerpt}`}
+            quote={title}
             additionalProps={{
               "aria-label": "Facebook share"
             }}
