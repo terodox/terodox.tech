@@ -63,7 +63,7 @@
     "react-obfuscate": "3.6.2",
     "react-share": "3.0.0",
     "react-visibility-sensor": "5.1.1",
-    "styled-jsx": "2.2.7",
+    "styled-jsx": "3.2.1",
     "styled-jsx-plugin-postcss": "2.0.1",
     "styled-jsx-plugin-stylelint": "0.1.0",
     "tinycolor2": "1.4.1",
