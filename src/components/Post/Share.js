@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   FacebookShareButton,
-  LinkedinShareButton,
+  RedditShareButton,
   TwitterShareButton,
   FacebookShareCount,
-  LinkedinShareCount,
+  RedditShareCount,
   FacebookIcon,
   TwitterIcon,
-  LinkedinIcon
+  RedditIcon
 } from "react-share";
 
 import config from "../../../content/meta/config";
@@ -54,19 +54,19 @@ const PostShare = props => {
               {count => <div className="share-count">{filter(count)}</div>}
             </FacebookShareCount>
           </FacebookShareButton>
-          <LinkedinShareButton
+          <RedditShareButton
             url={url}
             title={title}
             description={excerpt}
             additionalProps={{
-              "aria-label": "LinkedIn share"
+              "aria-label": "Reddit share"
             }}
           >
-            <LinkedinIcon round size={iconSize} />
-            <LinkedinShareCount url={url}>
+            <RedditIcon round size={iconSize} />
+            <RedditShareCount url={url}>
               {count => <div className="share-count">{filter(count)}</div>}
-            </LinkedinShareCount>
-          </LinkedinShareButton>
+            </RedditShareCount>
+          </RedditShareButton>
         </div>
       </div>
 
@@ -92,6 +92,10 @@ const PostShare = props => {
         .label {
           font-size: 1.2em;
           margin: 0 1em 1em;
+        }
+
+        :global(.SocialMediaShareCount) {
+          text-align: center;
         }
 
         @from-width tablet {
