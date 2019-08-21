@@ -122,9 +122,7 @@ class Menu extends React.Component {
     this.setState(prevState => ({ open: !prevState.open }));
   };
 
-  closeMenu = e => {
-    // e.preventDefault();
-
+  closeMenu = () => {
     if (this.state.open) {
       this.setState({ open: false });
       if (this.props.screenWidth < 1024) {
@@ -183,7 +181,7 @@ class Menu extends React.Component {
             justify-content: center;
             list-style: none;
             margin: 0;
-            padding: 0; /* 0 ${theme.space.s}; */
+            padding: 0;
             position: relative;
             width: 100%;
           }
