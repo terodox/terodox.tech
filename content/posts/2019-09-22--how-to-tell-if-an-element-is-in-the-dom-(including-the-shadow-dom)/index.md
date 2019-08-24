@@ -1,7 +1,7 @@
 ---
 title: "How to tell if an element is in the DOM (Including the Shadow DOM)"
 comments: true
-category: Javascript
+category: JavaScript
 cover: random-html.jpg
 author: Andy Desmarais
 ---
