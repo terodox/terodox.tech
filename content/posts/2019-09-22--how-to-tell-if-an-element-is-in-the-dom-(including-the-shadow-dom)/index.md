@@ -10,7 +10,7 @@ Cover picture credit: [Sai Kiran Anagani](https://unsplash.com/@_imkiran)
 
 ## What element lurks in hearts of documents... The shadow DOM doesn't know
 
-So I ran into a scenario where I need to know if a dom element was still attached to the DOM.  This seems like a trivial problem at first, but then I needed it to be IE11 compatible AND handle elements in the shadow DOM (with the shady dom polyfill). EEEEEEEEEEEK!
+So I ran into a scenario where I needed to know if a dom element was still attached to the DOM.  This seems like a trivial problem at first, but then I needed it to be IE11 compatible AND handle elements in the shadow DOM (with the shady dom polyfill). EEEEEEEEEEEK!
 
 ## TL;DR Iterate up the node tree!
 
@@ -22,7 +22,7 @@ function isInDocument(element) {
     while(currentElement && currentElement.parentNode) {
         if(currentElement.parentNode === document) {
             return true;
-        } else if(DocumentFragment && currentElement.parentNode instanceof DocumentFragment) {
+        } else if(currentElement.parentNode instanceof DocumentFragment) {
             currentElement = currentElement.parentNode.host;
         } else {
             currentElement = currentElement.parentNode;
@@ -39,6 +39,8 @@ This is a great solution when you aren't using elements with a shadow DOM. Unfor
 ## parentNode not parentElement
 
 This same technique can't be accomplished with parentElement because the shadow DOM host is not an element, but it is a DocumentFragment. This means that we get a **_null_** if we attempt to traverse up using the parentElement property.
+
+**NOTE:** IE11's implementation of DocumentFragment does not include the parentNode property! This is why the shady DOM polyfill is required for this technique to work. That and the fact that IE11 doesn't have a shadow DOM at all. 😊
 
 ## What the heck is a DocumentFragment?
 
