@@ -32,13 +32,17 @@ function isInDocument(element) {
 }
 ```
 
+## Why not just use document.body.contains?
+
+This is a great solution when you aren't using elements with a shadow DOM. Unfortunately because the shadow DOM uses a DocumentFragment (see below) for the shadowRoot it is not _technically_ contained in the DOM.
+
 ## parentNode not parentElement
 
 This same technique can't be accomplished with parentElement because the shadow DOM host is not an element. That means we traverse using the very similar, but not the same, parentNode.
 
 ## What the heck is a DocumentFragment?
 
-The shadowRoot host uses a DocumentFragment to hold its children. There are several reasons for this. Checkout the description of from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment):
+The shadowRoot host uses a DocumentFragment to hold its children. There are several reasons for this. Checkout the description from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment):
 
 >The DocumentFragment interface represents a minimal document object that has no parent. It is used as a light-weight version of Document to store a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the actual DOM's structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 
