@@ -34,11 +34,11 @@ function isInDocument(element) {
 
 ## Why not just use document.body.contains?
 
-This is a great solution when you aren't using elements with a shadow DOM. Unfortunately because the shadow DOM uses a DocumentFragment (see below) for the shadowRoot it is not _technically_ contained in the DOM.
+This is a great solution when you aren't using elements with a shadow DOM. Unfortunately, the shadow DOM uses a DocumentFragment for the shadowRoot it is not _technically_ contained in the DOM. This also means that trying to short circuit by using document.contains does not gain us much in terms of performance.
 
 ## parentNode not parentElement
 
-This same technique can't be accomplished with parentElement because the shadow DOM host is not an element. That means we traverse using the very similar, but not the same, parentNode.
+This same technique can't be accomplished with parentElement because the shadow DOM host is not an element, but it is a DocumentFragment. This means that we get a **_null_** if we attempt to traverse up using the parentElement property.
 
 ## What the heck is a DocumentFragment?
 
@@ -48,7 +48,7 @@ The shadowRoot host uses a DocumentFragment to hold its children. There are seve
 
 The shadowRoot takes advantage of the fact that it's not _actually_ in the DOM to completely encapsulate itself. This allows for scoping of style rules and events, but makes it a challenge when detecting whether an element is in the DOM!
 
-## Ok, but I can't use this if it's not fast...
+## Ok, but I can't use this if it's not fast…
 
 You can check out the [JS Perf](https://jsperf.com/isindocument/4) I put together to validate this.
 
