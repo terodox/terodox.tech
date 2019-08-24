@@ -46,7 +46,7 @@ The shadowRoot host uses a DocumentFragment to hold its children. There are seve
 
 >The DocumentFragment interface represents a minimal document object that has no parent. It is used as a light-weight version of Document to store a segment of a document structure comprised of nodes just like a standard document. The key difference is that because the document fragment isn't part of the actual DOM's structure, changes made to the fragment don't affect the document, cause reflow, or incur any performance impact that can occur when changes are made.
 
-The shadowRoot takes advantage of the fact that it's not _actually_ in the DOM to completely encapsulate itself. This allows for scoping of style rules and events.
+The shadowRoot takes advantage of the fact that it's not _actually_ in the DOM to completely encapsulate itself. This allows for scoping of style rules and events, but makes it a challenge when detecting whether an element is in the DOM!
 
 ## Ok, but I can't use this if it's not fast...
 
