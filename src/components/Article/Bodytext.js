@@ -62,6 +62,11 @@ const Bodytext = props => {
             padding: 0.1em 0.3em 0.2em;
             border-radius: 0.1em;
           }
+          :global(blockquote) {
+            padding-left: 30px;
+            font-style: italic;
+            border-left: 3px solid rgb(112, 148, 37);
+          }
         }
 
         @keyframes bodytextEntry {
