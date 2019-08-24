@@ -2,9 +2,11 @@
 title: "How to tell if an element is in the DOM (Including the Shadow DOM)"
 comments: true
 category: Javascript
-cover: moment-cover.png
+cover: random-html.jpg
 author: Andy Desmarais
 ---
+
+Cover picture credit: [Sai Kiran Anagani](https://unsplash.com/@_imkiran)
 
 ## What element lurks in hearts of documents... The shadow DOM doesn't know
 
