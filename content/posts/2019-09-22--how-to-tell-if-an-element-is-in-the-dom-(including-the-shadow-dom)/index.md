@@ -14,7 +14,7 @@ So I ran into a scenario where I needed to know if a dom element was still attac
 
 ## TL;DR Iterate up the node tree!
 
-The basic solution is to iterate up the through each parentNode. The caveat is the shadow DOM.  If we discover that a parent node is actually a DocumentFragment, then we'll need to look to the host property to continue our traversal. The _scary_ details are below if you're interested!
+The basic solution is to iterate up through each parentNode. The caveat is the shadow DOM.  If we discover that a parent node is actually a DocumentFragment, then we'll need to look to the host property to continue our traversal. The _scary_ details are below if you're interested!
 
 ```javascript
 function isInDocument(element) {
