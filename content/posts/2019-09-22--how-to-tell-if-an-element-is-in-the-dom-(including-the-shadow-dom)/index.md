@@ -34,7 +34,7 @@ function isInDocument(element) {
 
 ## Why not just use document.body.contains?
 
-This is a great solution when you aren't using elements with a shadow DOM. Unfortunately, the shadow DOM uses a DocumentFragment for the shadowRoot, and it is not _technically_ contained in the DOM. This also means that trying to short circuit by using document.contains does not gain us much in terms of performance.
+This is a great solution when you aren't using elements with a shadow DOM. Unfortunately, the shadow DOM uses a DocumentFragment for the shadowRoot, and it is not _technically_ contained in the DOM. This also means that trying to short circuit by using document.contains doesn't gain us much in terms of performance.
 
 ## parentNode not parentElement
 
