@@ -3,13 +3,22 @@ import PropTypes from "prop-types";
 
 import { FaArrowDown } from "react-icons/fa/";
 
+const heroTitles = [
+    'A site of technical musings, and the occasional rant.',
+    'Go Vanilla JS, or go home.',
+    'A simple way to enlighten your day',
+    'A great place to learn a little something'
+];
+
 const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;
+
+  const currentTitle = heroTitles[Math.floor(Math.random() * heroTitles.length)];
 
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>A site of technical musings, and the occasional rant.</h1>
+        <h1>{currentTitle}</h1>
         <button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
         </button>
