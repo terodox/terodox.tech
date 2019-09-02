@@ -7,7 +7,10 @@ const heroTitles = [
     'A site of technical musings, and the occasional rant.',
     'Go Vanilla JS, or go home.',
     'A simple way to enlighten your day',
-    'A great place to learn a little something'
+    'A great place to learn a little something',
+    'Javascript, APIs, and Markup, OH MY!',
+    'Like a warm blanket of Javascripty goodness',
+    'Growing your knowledge one article at a time'
 ];
 
 const Hero = props => {
