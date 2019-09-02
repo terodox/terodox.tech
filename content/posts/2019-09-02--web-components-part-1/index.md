@@ -63,10 +63,10 @@ class HelloWorld extend HTMLElement {
 
 The shadow DOM has two modes.
 
-- open:
+- **open**
   - This allows the newly created shadow root to be accessible from the main document with the javascript API.
   - The shadowRoot property will be populated on the DOM node.
-- closed:
+- **closed**
   - The shadowRoot property will return null.
   - This is an advanced use case that should be avoided unless you deeply understand the nuances of the shadow DOM.
 
