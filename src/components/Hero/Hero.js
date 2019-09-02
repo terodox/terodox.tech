@@ -16,7 +16,10 @@ const heroTitles = [
 const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;
 
-  const currentTitle = heroTitles[Math.floor(Math.random() * heroTitles.length)];
+  let currentTitle = "";
+  if (window) {
+    currentTitle = heroTitles[Math.floor(Math.random() * heroTitles.length)];
+  }
 
   return (
     <React.Fragment>
