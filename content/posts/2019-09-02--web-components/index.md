@@ -98,6 +98,20 @@ The document.importNode method allows us to get a cloned version of the nodes in
 - `true` will yield a deep clone of all the nodes in the node tree.
 - `false` will only clone the root level of the external node. No child nodes are cloned!
 
-## Why do I care?
+## Why do I care? (WARNING: Opinions ahead)
+
+Web Components are built to be universal. The work across all frameworks, all modern browsers (and even IE11 with polyfills), and won't suffer from the constant churn of a framework.
+
 ### Benefits over frameworks
+
+It's just javascript! If you don't need IE11 compatibility you can write native JS again without needing anything on top of it. This beckons back to the early days of the web before massive build pipelines were required to launch a site.
+
+It's stable. The API for web components is not going to change with the next release of Chrome, Firefox, or Safari. The stability of the API means less time spent updating your code just to maintain current functionality.
+
 ### Browser native means something
+
+When a new piece of functionality is introduced as a standard to the browser it will not be removed very quickly. This matters a lot when we're writing new code, because it means we won't be writing code that is obsolete in a short period of time. Moreover, we will not have to deal with changes to the API happening at a pace that will force us to refactor existing code to maintain functionality.
+
+Browsers can't just change or removed functionality, because they would risk "breaking the web."
+
+## Part 2 - Lifecycle Callbacks (Coming Soon!)
