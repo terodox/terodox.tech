@@ -10,7 +10,7 @@ Cover picture credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
 
 ## What are they?
 
-<img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF;">
+<img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF; float: right;">
 
 Web Components are a browser native set of technologies designed to bring component level encapsulation of functionality to the web.
 
