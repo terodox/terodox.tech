@@ -17,7 +17,7 @@ const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;
 
   let currentTitle = "";
-  if (typeof window !== undefined) {
+  if (typeof window === "object") {
     currentTitle = heroTitles[Math.floor(Math.random() * heroTitles.length)];
   }
 
