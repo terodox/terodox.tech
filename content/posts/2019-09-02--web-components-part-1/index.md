@@ -36,7 +36,7 @@ Then we need to tell the DOM about this new element class.  This is done using d
 window.customElements.define('hello-word', HelloWorld)
 ```
 
-In the snippet above, the first parameter is the tag name used in the DOM. There is a requirement that the tag name has '-' in it.  This is to differentiate custom elements from DOM native ones. The second parameter is our class the extends HTMLElement.
+In the snippet above, the first parameter is the tag name used in the DOM. There is a requirement that the tag name has '-' in it.  This is to differentiate custom elements from DOM native elements. The second parameter is our class tha extends HTMLElement.
 
 Once you've defined that class you can simply put that tag in the DOM and it will work!
 
