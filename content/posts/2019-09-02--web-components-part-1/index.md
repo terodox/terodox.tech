@@ -12,7 +12,7 @@ Cover picture credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
 
 <img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF; float: right;">
 
-Web Components are a browser native set of technologies designed to bring component level encapsulation of functionality to the web.
+> Web components are a set of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags to use in web pages and web apps. - [webcomponents.org](https://www.webcomponents.org/introduction)
 
 That was a long winded way of saying, "the ability to create components without needing a framework."
 
@@ -24,10 +24,10 @@ There are three main pieces that combine to create a WebComponent:
 
 ### Custom Elements
 
-Custom Elements are the way we create new DOM elements. The first requirement is an ES6 class the extends the HTMLElement class.
+Custom Elements are the way we create new DOM elements. The first requirement is an ES6 class that extends the HTMLElement class.
 
 ```javascript
-class HelloWorld extend HTMLElement {}
+class HelloWorld extends HTMLElement {}
 ```
 
 Then we need to tell the DOM about this new element class.  This is done using define method on the window.customElements registry.
@@ -51,7 +51,7 @@ The Shadow DOM provides us with encapsulation of both our elements and our style
 Attaching a shadow DOM to a custom element is very simple. Call the attachShadow method and the element will gain a new property: shadowRoot.
 
 ```javascript
-class HelloWorld extend HTMLElement {
+class HelloWorld extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -83,7 +83,7 @@ const helloWorldTemplate = document.createElement('template');
 helloWorldTemplate.innerHTML = `<h1>Hello World!</h1>`;
 document.appendChild(helloWorldTemplate);
 
-class HelloWorld extend HTMLElement {
+class HelloWorld extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
