@@ -38,6 +38,10 @@ const Bodytext = props => {
             margin: 0 0 1.5em;
             padding: 0 0 0 1.5em;
           }
+          :global(ol) {
+            margin: 0 0 1.5em;
+            padding: 0 0 0 1.5em;
+          }
           :global(li) {
             margin: 0.7em 0;
             line-height: 1.5;
