@@ -18,9 +18,9 @@ That was a long winded way of saying, "the ability to create components without 
 
 There are three main pieces that combine to create a WebComponent:
 
-1. Custom Elements
-2. Shadow DOM
-3. Templates
+1. [Custom Elements](#custom-elements)
+2. [Shadow DOM](#shadow-dom)
+3. [Templates](#templates)
 
 ### Custom Elements
 
