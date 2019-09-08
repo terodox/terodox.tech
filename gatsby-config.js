@@ -98,6 +98,12 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `50`
+            }
+          },
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,
