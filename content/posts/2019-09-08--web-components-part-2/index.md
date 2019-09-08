@@ -18,10 +18,10 @@ I'll talk purely about custom elements for this article. If you are unsure what 
 
 If you are new to the web development world you may not have heard this term before. Simply put lifecycle callbacks are a way for us to know about what's happening to our custom element in the DOM.
 
-- Is it in the DOM yet? - connectedCallback
-- Has it been removed from the DOM? - disconnectedCallback
-- Did an attribute value change? - attributeChangedCallback
-- Are we in a different DOM? - adoptedCallback
+- Is it in the DOM yet? - [connectedCallback](#connectedcallback)
+- Has it been removed from the DOM? - [disconnectedCallback](#disconnectedcallback)
+- Did an attribute value change? - [attributeChangedCallback](#attributechangedcallback)
+- Are we in a different DOM? - [adoptedCallback](#adoptedcallback)
 
 These are the questions we can answer using lifecycle callbacks.
 
