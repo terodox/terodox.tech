@@ -6,7 +6,7 @@ cover: random-html.jpg
 author: Andy Desmarais
 ---
 
-Cover picture credit: [Sai Kiran Anagani](https://unsplash.com/@_imkiran)
+Cover photo credit: [Sai Kiran Anagani](https://unsplash.com/@_imkiran)
 
 ## What element lurks in hearts of documents... The shadow DOM doesn't know
 

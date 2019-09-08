@@ -6,7 +6,7 @@ cover: webcomponents-cover.jpg
 author: Andy Desmarais
 ---
 
-Cover picture credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
+Cover photo credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
 
 ## What are they?
 
