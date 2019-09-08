@@ -62,7 +62,7 @@ This is the method to let us know the element has been added to the DOM. Here's 
 
 - The tag is already in the HTML when the document is rendered
 - We create the element using `document.createElement()` then add it to the DOM using `appendChild`
-- The element is a child component of another element that is added to the DOM using `apendChild`
+- The element is a child component of another element that is added to the DOM using `appendChild`
 
 This is far from an exhaustive list of scenarios, but you get the idea.
 
