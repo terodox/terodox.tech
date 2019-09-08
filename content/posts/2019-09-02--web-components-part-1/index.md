@@ -6,7 +6,7 @@ cover: webcomponents-cover.jpg
 author: Andy Desmarais
 ---
 
-Cover picture credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
+Cover photo credit: [Pankaj Patel](https://unsplash.com/@pankajpatel)
 
 ## What are they?
 
@@ -114,4 +114,4 @@ When a new piece of functionality is introduced as a standard to the browser it 
 
 Browsers can't just change or removed functionality, because they would risk "breaking the web."
 
-## Part 2 - Lifecycle Callbacks (Coming Soon!)
+## [Part 2 - Lifecycle Callbacks](/web-components-part-2)
