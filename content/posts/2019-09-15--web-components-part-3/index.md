@@ -196,4 +196,4 @@ There was a LOT in this post, and that speaks to the power of slots when buildin
 
 We learned about _default_ slots vs named slots, multiple elements in a single slot, how to programmatically access slot events and slot contents. In short, you are ready to go out an experiment with slots to start creating composable and re-usable Web Components!
 
-## Next Up - Styling the shadow DOM
+## Part 4 - Styling the shadow DOM (Coming Soon!)
