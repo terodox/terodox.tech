@@ -104,11 +104,24 @@ Usage:
 
 There are a few important nuances you need to be aware of to work with slots effectively.
 
-## Consumer slotted content must be top level
+### Consumer slotted content must be top level
 
-The first is that slots must be top level elements in the consumers html. This limitation has to do with how the elements are mapped into the components shadow DOM. The elements being put into slots are not rendered in the light DOM which means all of them need to be used in the shadow DOM.
+Slots must be top level elements in the consumers html. This limitation has to do with how the elements are mapped into the components shadow DOM. The elements being put into slots are not rendered in the light DOM which means all of them need to be used in the shadow DOM.
 
-Let's take a quick look at the chrome dev tools with our last example.
+Quick example of how things can go wrong:
+
+```html
+<custom-message>
+    <div>
+        <!-- This is not allowed! -->
+        <span slot="emoji">👋</span>
+    </div>
+    <!-- Valid Usage -->
+    <span slot="message">A very important message!</span>
+</custom-message>
+```
+
+Let's take a quick look at the chrome dev tools with our last example to see what's going on.
 
 ![Slot element mapping from Chrome dev tools](slot-element-mapping.png)
 
@@ -156,7 +169,29 @@ Here's what actually gets rendered:
 
 ![Multiple elements example](multiple-elements-example.png)
 
-The two emojis are rendered side-by-side and the two messages are rendered side-by-side. Our two slots are going to take the content designated to them, either by name or default, and render all of the content! This means we can have
+The two emojis are rendered side-by-side and the two messages are rendered side-by-side. Our two slots are going to take the content designated to them, either by name or default, and render all of the content! This means we can have as many elements as we like passed into our different slots!
 
 ## Programmatic access to elements
+
+Ok, but what if I need access to the elements in the slot to add an onclick listener?
+
+The custom element rendering the slots can get access to its contents using two different methods:
+
+- `slotElement.assignedNodes()`
+- `slotElement.assignedElements()`
+
+These two accessors allow you to get an iterable sequence of nodes/elements to work with. Both methods also support an additional option to get all of the content for all descendent slots. `slotElement.assignedNodes({ flatten: true })` or `slotElement.assignedElements({ flatten: true })` will return an iterable sequence with all slots resolved all the way down the element/node tree.
+
 ## Slot change events
+
+Awesome, we can slot in contents and add listeners when we need, but what about when the slotted content changes?
+
+There is an event fired from a slot element when its content changes. The `slotchange` event doesn't have anything useful in the data passed to the event handler currently. The purpose is purely for observability. Knowing when the content changes can allow simple tricks like a small flash to let the consumer know the data they are seeing has changed recently, or more complex work like updating the event listeners you've created for child elements.
+
+## Wrapping up
+
+There was a LOT in this post, and that speaks to the power of slots when building Web Components.
+
+We learned about _default_ slots vs named slots, multiple elements in a single slot, how to programmatically access slot events and slot contents. In short, you are ready to go out an experiment with slots to start creating composable and re-usable Web Components!
+
+## Next Up - Styling the shadow DOM
