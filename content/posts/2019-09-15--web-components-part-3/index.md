@@ -14,6 +14,8 @@ This article requires a prior knowledge of Web Components. If you are new to web
 
 ## What is a slot?
 
+<img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF; float: right;">
+
 A slot is a new element introduced for use with Web Components. They allow providing content that will be rendered within the [shadow DOM](/web-components-part-1/#shadow-dom) of a Web Component.
 
 Slots are one of the most powerful tools we have to make useful Web Components.
