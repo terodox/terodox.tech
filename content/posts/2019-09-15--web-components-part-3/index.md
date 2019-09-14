@@ -16,7 +16,7 @@ This article requires a prior knowledge of Web Components. If you are new to web
 
 <img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF; float: right;">
 
-A slot is a new element introduced for use with Web Components. They allow providing content that will be rendered within the [shadow DOM](/web-components-part-1/#shadow-dom) of a Web Component.
+A slot is a new element introduced for use with Web Components. They allow a consumer to provide content that will be rendered within the [shadow DOM](/web-components-part-1/#shadow-dom) of a Web Component.
 
 Slots are one of the most powerful tools we have to make useful Web Components.
 
@@ -76,7 +76,7 @@ This example yields a component a consumer can re-use for all of their error mes
 
 ## Named slots
 
-Slots have a `name` attribute that can be used to designate multiple slots. The name on the slot can then be mirrored into the `slot` attribute on the tag intended to occupy that slot. This gives use the control to have a lot of different content flow into a component in a controlled manner.
+Slots have a `name` attribute that can be used to designate multiple slots. The name on the slot can then be mirrored into the `slot` attribute on the tag intended to occupy that slot. This gives us the control to have a lot of different content flow into a component in a controlled manner.
 
 Alongside named slots we can have a _default_ slot.  This slot will be the catch-all for any content not placed into a named slot. In our quick example the slotted content went into the _default_ slot.
 
@@ -127,7 +127,7 @@ Let's take a quick look at the chrome dev tools with our last example to see wha
 
 ![Slot element mapping from Chrome dev tools](slot-element-mapping.png)
 
-You can see that inside the shadow dom we have a pointer to the two `span` elements. The shadow DOM does not copy the elements in. Instead it merely references the elements that are outside the shadow DOM. This has the benefit of keeping the consumers references in tact, while still allowing the DOM to render the elements as if they are directly inside the shadow DOM.
+You can see that inside the shadow dom we have a pointer to the two `span` elements. The shadow DOM does not copy the elements in. Instead it merely references the elements that are outside the shadow DOM. This has the benefit of keeping the consumers references intact, while still allowing the DOM to render the elements as if they are directly inside the shadow DOM.
 
 If we allowed elements inside our component tag that are not referenced in the shadow DOM, the browser would not have a clear way of where and how to render them.
 
@@ -194,6 +194,6 @@ There is an event fired from a slot element when its content changes. The `slotc
 
 There was a LOT in this post, and that speaks to the power of slots when building Web Components.
 
-We learned about _default_ slots vs named slots, multiple elements in a single slot, how to programmatically access slot events and slot contents. In short, you are ready to go out an experiment with slots to start creating composable and re-usable Web Components!
+We learned about _default_ slots vs named slots, multiple elements in a single slot, and how to programmatically access slot events and slot contents. In short, you are ready to go out and experiment with slots to start creating composable and re-usable Web Components!
 
 ## Part 4 - Styling the shadow DOM (Coming Soon!)
