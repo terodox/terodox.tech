@@ -121,4 +121,4 @@ Compare this to:
 
 With these lifecycle callbacks we now have the tools needed to create custom elements that can understand their state in the dom and react to outside changes to their attributes! We have the building blocks needed to build some basic components that allow interaction and updates.
 
-## Part 3: Slots! (Coming soon!)
+## [Part 3: Slots!](/web-components-part-3)
