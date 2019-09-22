@@ -20,16 +20,11 @@ The goal with web components is to keep things simple. However, working with web
 
 The goal of this article is to set out some best practices that have made my time working with web components a much more manageable experience. Specifically we'll focus on:
 
-- Using class getters for:
-  - [Tag Name](#tag-name)
-  - [Attributes](#attributes)
+- [Class static getter for tag Name](#class-static-getter-for-tag-name)
+- [Class getter for attributes](#class-getter-for-attributes)
 - [Using string literals for templates](#string-literals-for-templates)
 
-## Use class getters for reference
-
-Using a web component means knowing at minimum two important pieces of information: tag name and available attributes. These are the fundamental building blocks we need to consume a web component in html.
-
-### Tag name
+### Class static getter for tag name
 
 Web components are, by requirement, a class. We can take advantage of that fact to create a `tagName` static getter. This will allow consumers to have programmatic access to the tag's name when building templates.
 
@@ -66,7 +61,7 @@ class App extends HTMLElement {
 
 This seems like a very small win. It is until you find a tag name collision and need to change a components tag name. Then it can be a bit of a nightmare. Especially in the case where you are shipping a reusable web component intended for outside usage. If this practice is followed by both producers and consumers of web components then a tag name change becomes a non-event!
 
-### Attributes
+### Class getter for attributes
 
 A tag can only be minimally useful without the ability to pass it information. Attributes are the only way to pass information to a component in HTML. This makes them a critical part of working with web components.
 
