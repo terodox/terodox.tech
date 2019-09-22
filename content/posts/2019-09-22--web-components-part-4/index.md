@@ -150,8 +150,8 @@ class App extends HTMLElement {
 
 This one can be considered controversial. I prefer use of string literals over the use of the &lt;template&gt; element. I base this decision on [some performance testing](https://jsperf.com/template-element-vs-string-literal/1) I did comparing use of template strings to the &lt;template&gt; for initial load. The performance is either so similar it wouldn't matter, or so fast it would matter.
 
-The biggest reason I find using sting literals to be better is updating elements with runtime values. I don't have to run any query selectors to find the element I'm looking for.
+The biggest reason I find using string literals beneficial is updating elements with runtime values. I don't have to run any query selectors to find the element I'm looking for.
 
-The basics are to simply avoid using the template element in favor of an inline string template that interpolates in the necessary values. This was demonstrated in the examples above when building the `App` component.
+The basics of this idea are to simply avoid using the template element in favor of an inline string template that interpolates in the necessary values. This was demonstrated in the examples above when building the `App` component.
 
 **NOTE:** This is a best practice for initial loads only! DO NOT REPLACE THE ENTIRE HTML WITH EVERY UPDATE! You will find yourself in performance pain if you are updating the entire html element with each update.
