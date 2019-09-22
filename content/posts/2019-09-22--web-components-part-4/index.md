@@ -65,7 +65,7 @@ This seems like a very small win. It is until you find a tag name collision and 
 
 A tag can only be minimally useful without the ability to pass it information. Attributes are the only way to pass information to a component in HTML. This makes them a critical part of working with web components.
 
-The critical nature of attributes makes it equally critical to give us a simple way to work with them. The approach I've found to be most helpful is to have a static property defining all of the properties.
+The critical nature of attributes makes it equally critical to provide a simple way to work with them. The approach I've found to be most helpful is to have a static property defining all of the properties.
 
 ```javascript
 export class StyledList extends HTMLElement {
