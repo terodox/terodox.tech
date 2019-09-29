@@ -28,7 +28,7 @@ Using the shadow DOM introduces a new way of thinking about styling content. The
 
 ## What does style isolation really mean?
 
-When we use the shadow DOM we are creating a separate DOM from the main DOM. This means the style tags from the main DOM will not affect elements in the shadow DOM. This, in turn, means we need to have our style tags inside the shadow DOM for them to affect our tags.
+When we use the shadow DOM we are creating a separate DOM from the main DOM (light DOM). This means the style tags from the light DOM will not affect elements in the shadow DOM. This, in turn, means we need to have our style tags inside the shadow DOM for them to affect our tags.
 
 ```javascript
 class StyledHeader extends HTMLElement {
