@@ -25,7 +25,6 @@ Major topics covered:
 - Reusing styles
 - :host and :host-context psuedo classes
 - ::slotted psuedo element
-- The dark alley (styling slotted content)
 
 ## What does style isolation really mean?
 
@@ -223,4 +222,90 @@ The example above should output:
 
 ![Host context example](host-context-example.png)
 
+Now we can know about our context and styles from outside the shadow DOM, but what about slotted content?
 
+## ::slotted pseudo element
+
+When we need to apply styles to elements that are slotted in from the light DOM we have to use the `::slotted` psuedo element. Our standard styles in the shadow DOM will not have access to style slotted content because it is not *owned* by the shadow DOM. Using the `::slotted` psuedo element allows us to style slotted content to a limited degree. Let's look at an example:
+
+```javascript
+class ContextAwareText extends HTMLElement {
+    constructor() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+        <style>
+            ::slotted(*) {
+                color: red;
+            }
+            ::slotted(span) {
+                font-weight: bold;
+            }
+            ::slotted(p) {
+                font-style: italic;
+            }
+            ::slotted(div) {
+                font-size: 16px;
+            }
+            ::slotted(label) {
+                font-size: 16px !important;
+            }
+        </style>
+        <slot></slot>
+        `;
+    }
+}
+```
+
+Let's break this down one selector at a time.
+
+- `::slotted(*)` will affect ALL slotted elements
+- `::slotted(span)` selects only span tags the have been slotted in
+- `::slotted(p)` selects only p tags the have been slotted in
+- `::slotted(div)` selects only div tags the have been slotted in
+- `::slotted(label)` selects only label tags the have been slotted in
+
+Now let's look at the markup:
+
+```html
+<slotted-content><h3>Just red</h3></slotted-content>
+<slotted-content><span>Red and Bold</span></slotted-content>
+<slotted-content><p>Red and Italicized</p></slotted-content>
+<style>
+    div {
+        font-size: 30px
+    }
+</style>
+<slotted-content><div>No override</div></slotted-content>
+<style>
+    label {
+        font-size: 30px
+    }
+</style>
+<slotted-content><label>Used !important</label></slotted-content>
+```
+
+Take a minute to think about each example.
+
+.
+
+..
+
+...
+
+....
+
+.....
+
+...... Ready to see what really happened?
+
+![Slotted content example](slotted-content-example)
+
+Most of this is pretty straight forward, but what happened with the `div` and `label`?
+
+There's a conflict in styles from the light DOM to the shadow DOM. This is a conflict we would generally solve with specificity in the light DOM, but unfortunately we don't have a facility to tackle this when crossing the shadow DOM/light DOM boundary.
+
+There's a good explanation from an [issue in the standards thread](https://github.com/w3c/csswg-drafts/issues/2290#issuecomment-382465643). It's not a simple problem to solve. The result of this is that we cannot override styles that are established in the light DOM from the shadow DOM without using `!important`, the most dreaded part of the CSS spec.
+
+## Wrapping things up
+
+Styling custom elements using the shadow DOM is both really simple and extremely complex depending on the scenario you are trying to tackle. Knowing about the rough edges will be important as you begin to tackle more and more complex scenarios in your own code base.
