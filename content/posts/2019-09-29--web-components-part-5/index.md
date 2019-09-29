@@ -20,11 +20,11 @@ Using the shadow DOM introduces a new way of thinking about styling content. The
 
 Major topics covered:
 
-- What does style isolation really mean?
-- CSS custom properties break the boundary
-- Reusing styles
-- :host and :host-context psuedo classes
-- ::slotted psuedo element
+- [What does style isolation really mean?](#what-does-style-isolation-really-mean)
+- [CSS custom properties break the boundary](#css-custom-properties-break-the-boundary)
+- [Reusing styles](#reusing-styles)
+- [:host and :host-context psuedo classes](#host-and-host-context-psuedo-classes)
+- [::slotted psuedo element](#slotted-pseudo-element)
 
 ## What does style isolation really mean?
 
