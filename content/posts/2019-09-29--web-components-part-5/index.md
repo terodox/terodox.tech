@@ -83,7 +83,7 @@ It's still blue! The style from the light DOM will not make it into the isolated
 
 If you are not familiar with CSS custom properties, the [MDN write up](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) is a great place to start.
 
-Custom properties are a very powerful tool for creating user customizable web components. The biggest reason is that they break through the shadow DOM boundary! Here a simple example:
+Custom properties are a very powerful tool for creating user-customizable web components. The biggest reason is that they break through the shadow DOM boundary! Here a simple example:
 
 ```javascript
 class StyledHeader extends HTMLElement {
