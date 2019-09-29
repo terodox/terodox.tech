@@ -50,7 +50,7 @@ The example above is all it takes to create a simple component with isolated sty
 
 ### Ok. So what about styles from the light DOM?
 
-Styles in the light DOM do not make it into the shadow DOM because it is a completely separate DOM. The shadow DOM is isolated from the main DOMs styles with a few small exceptions we'll get into next.
+Styles in the light DOM do not make it into the shadow DOM because it is a completely separate DOM. The shadow DOM is isolated from the light DOMs styles with a few small exceptions we'll get into next.
 
 Look at the example below using our StyledHeader from earlier:
 
@@ -83,7 +83,7 @@ It's still blue! The style from the light DOM will not make it into the isolated
 
 If you are not familiar with CSS custom properties, the [MDN write up](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) is a great place to start.
 
-Custom properties are a very powerful tool for creating user customizable web components. The biggest reason is that the break through the shadow DOM boundary! Here a simple example:
+Custom properties are a very powerful tool for creating user customizable web components. The biggest reason is that they break through the shadow DOM boundary! Here a simple example:
 
 ```javascript
 class StyledHeader extends HTMLElement {
@@ -114,7 +114,7 @@ The **h1** from the StyledHeader will be *green*! This allows customizability wi
 
 ## Reusing styles
 
-One of the challenges with isolated styling is duplication. If we have several different components that need the same sets of styling we don't want to have those styles isolated to each component. That would be very challenging to maintain, and could easily create inconsistencies in our components.
+One of the challenges with isolated styling is duplication. If we have several different components that need the same set of styles we don't want to have those styles isolated to each component. That would be very challenging to maintain, and could easily create inconsistencies in our components.
 
 One solution to this problem is to reuse style tags. The `<template>` tag is our best friend for this type of issue. We can define out shared style in a template that can then be brought into our component for reuse.
 
@@ -176,11 +176,11 @@ class StyledHeader extends HTMLElement {
 <styled-header class="color-blue">This text is the blue</styled-header>
 ```
 
-This allows us to apply different styles depending on the styles being applied to the tag. We can go even further than this by gaining knowledge of the tags above our custom element to gain context for rendering.
+This allows us to apply different styles depending on the styles being applied to the custom element tag. We can go even further than this by gaining knowledge of the tags above our custom element to gain context for rendering.
 
 ### :host-context psuedo class
 
-Having context for how the parent tags above an element can allow us to have different look and feel for different contexts. A simple example of this would be allowing context to italicize or bold text in our custom element. Consider the following markup:
+Having context of the parent tags above an element can allow us to differentiate the look and feel for different contexts. A simple example of this would be allowing context to italicize or bold text in our custom element. Consider the following markup:
 
 ```html
 <context-aware-text>Nothing special</context-aware-text>
@@ -197,7 +197,7 @@ Having context for how the parent tags above an element can allow us to have dif
 </em>
 ```
 
-Without the `:host-context` psuedo class we would not have awareness to know if we should be bold, italicized, or neither. Here's an example of how we can make this work:
+Without the `:host-context` psuedo class we would not have awareness to know if we should be bold, italicized, both, or neither. Here's an example of how we can make this work:
 
 ```javascript
 class ContextAwareText extends HTMLElement {
