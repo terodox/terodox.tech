@@ -298,7 +298,7 @@ Take a minute to think about each example.
 
 ...... Ready to see what really happened?
 
-![Slotted content example](slotted-content-example)
+![Slotted content example](slotted-content-example.png)
 
 Most of this is pretty straight forward, but what happened with the `div` and `label`?
 
