@@ -155,3 +155,5 @@ The biggest reason I find using string literals beneficial is updating elements 
 The basics of this idea are to simply avoid using the template element in favor of an inline string template that interpolates in the necessary values. This was demonstrated in the examples above when building the `App` component.
 
 **NOTE:** This is a best practice for initial loads only! DO NOT REPLACE THE ENTIRE HTML WITH EVERY UPDATE! You will find yourself in performance pain if you are updating the entire html element with each update.
+
+## [Part 5 - Styling the shadow DOM, including slotted content](/web-components-part-5)
