@@ -259,10 +259,10 @@ class ContextAwareText extends HTMLElement {
 Let's break this down one selector at a time.
 
 - `::slotted(*)` will affect ALL slotted elements
-- `::slotted(span)` selects only span tags the have been slotted in
-- `::slotted(p)` selects only p tags the have been slotted in
-- `::slotted(div)` selects only div tags the have been slotted in
-- `::slotted(label)` selects only label tags the have been slotted in
+- `::slotted(span)` selects only span tags that have been slotted in
+- `::slotted(p)` selects only p tags that have been slotted in
+- `::slotted(div)` selects only div tags that have been slotted in
+- `::slotted(label)` selects only label tags that have been slotted in
 
 Now let's look at the markup:
 
