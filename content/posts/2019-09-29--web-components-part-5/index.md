@@ -116,7 +116,7 @@ The **h1** from the StyledHeader will be *green*! This allows customizability wi
 
 One of the challenges with isolated styling is duplication. If we have several different components that need the same set of styles we don't want to have those styles isolated to each component. That would be very challenging to maintain, and could easily create inconsistencies in our components.
 
-One solution to this problem is to reuse style tags. The `<template>` tag is our best friend for this type of issue. We can define out shared style in a template that can then be brought into our component for reuse.
+One solution to this problem is to reuse style tags. The `<template>` tag is our best friend for this type of issue. We can define our shared style in a template that can then be brought into our component for reuse.
 
 ```html
 <template id="header-reusable-styles">
@@ -149,7 +149,7 @@ With the template in place we can reuse it with any component that needs the sam
 
 We can now style elements inside the shadow DOM from outside using CSS custom properties, but what if we want to style the contents of the component based on properties of the host?
 
-The `:host` psuedo class can help. Using the `:host` psuedo class we can apply different styles depending on styles applied to our custom element. A quick example should help to clarify things:
+The `:host` psuedo class can help. Using it we can apply different styles depending on what a consumer applies to our custom element tag. A quick example should help to clarify things:
 
 ```javascript
 class StyledHeader extends HTMLElement {
