@@ -304,7 +304,7 @@ Most of this is pretty straight forward, but what happened with the `div` and `l
 
 There's a conflict in styles from the light DOM to the shadow DOM. This is a conflict we would generally solve with specificity in the light DOM, but unfortunately we don't have a facility to tackle this when crossing the shadow DOM/light DOM boundary.
 
-There's a good explanation from an [issue in the standards thread](https://github.com/w3c/csswg-drafts/issues/2290#issuecomment-382465643). It's not a simple problem to solve. The result of this is that we cannot override styles that are established in the light DOM from the shadow DOM without using `!important`, the most dreaded part of the CSS spec.
+There's a good explanation from an [issue thread in the w3c standards repo](https://github.com/w3c/csswg-drafts/issues/2290#issuecomment-382465643). It's not a simple problem to solve. The result of this is that we cannot override styles that are established in the light DOM from the shadow DOM without using `!important`, the most dreaded part of the CSS spec.
 
 ## Wrapping things up
 
