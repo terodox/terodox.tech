@@ -18,7 +18,7 @@ This article requires a prior knowledge of Web Components. If you are new to web
 
 Using the shadow DOM introduces a new way of thinking about styling content. The isolation of styles is both a blessing and a curse. We will have much simpler styles to achieve our desired look, but we will lose a lot of control over any slotted content. In this post, I'll do my best to give some guidance on how to best use the new psuedo classes and elements, and where the dark alleys are.
 
-Major topics covered:
+### Major topics covered:
 
 - [What does style isolation really mean?](#what-does-style-isolation-really-mean)
 - [CSS custom properties break the boundary](#css-custom-properties-break-the-boundary)
