@@ -16,15 +16,15 @@ This article requires a prior knowledge of Web Components. If you are new to web
 
 <img class="right" src="webcomponents.svg" title="Web Components" width="200" style="background-color: #FFF; float: right;">
 
-Using the shadow DOM introduces a new way of thinking about styling content. The isolation of styles is both a blessing and a curse. We will have much simpler styles to achieve our desired look, but we will lose a lot of control over any slotted content. In this post, I'll do my best to give some guidance on how to best use the new psuedo selectors, and where the dark alleys are.
+Using the shadow DOM introduces a new way of thinking about styling content. The isolation of styles is both a blessing and a curse. We will have much simpler styles to achieve our desired look, but we will lose a lot of control over any slotted content. In this post, I'll do my best to give some guidance on how to best use the new psuedo classes and elements, and where the dark alleys are.
 
 Major topics covered:
 
 - What does style isolation really mean?
-- CSS variables break the boundary
-- Re-using styles
-- :host psuedo selector
-- ::slotted psuedo seector
+- CSS custom properties break the boundary
+- Reusing styles
+- :host and :host-context psuedo classes
+- ::slotted psuedo element
 - The dark alley (styling slotted content)
 
 ## What does style isolation really mean?
@@ -32,7 +32,7 @@ Major topics covered:
 When we use the shadow DOM we are creating a separate DOM from the main DOM. This means the style tags from the main DOM will not affect elements in the shadow DOM. This, in turn, means we need to have our style tags inside the shadow DOM for them to affect our tags.
 
 ```javascript
-export class StyledHeader extends HTMLElement {
+class StyledHeader extends HTMLElement {
     constructor() {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
@@ -78,4 +78,149 @@ What color is the **h1** tag from the `<styled-header>`? Think about it before s
 
 ...... Got it?
 
-It's still blue! The style from the light DOM will not make it into the isolated shadow DOM!
+It's still blue! The style from the light DOM will not make it into the isolated shadow DOM! Now let's dig into the most notable exception to this rule, CSS custom properties.
+
+## CSS custom properties break the boundary
+
+If you are not familiar with CSS custom properties, the [MDN write up](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) is a great place to start.
+
+Custom properties are a very powerful tool for creating user customizable web components. The biggest reason is that the break through the shadow DOM boundary! Here a simple example:
+
+```javascript
+class StyledHeader extends HTMLElement {
+    constructor() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+        <style>
+            h1 {
+                color: var(--styled-header-color, blue);
+            }
+        </style>
+        <h1>I am styled from the shadow DOM</h1>
+        `;
+    }
+}
+```
+
+```html
+<style>
+    :root {
+        --styled-header-color: green;
+    }
+</style>
+<styled-header></styled-header>
+```
+
+The **h1** from the StyledHeader will be *green*! This allows customizability without needing to directly cross the shadow DOM boundary.
+
+## Reusing styles
+
+One of the challenges with isolated styling is duplication. If we have several different components that need the same sets of styling we don't want to have those styles isolated to each component. That would be very challenging to maintain, and could easily create inconsistencies in our components.
+
+One solution to this problem is to reuse style tags. The `<template>` tag is our best friend for this type of issue. We can define out shared style in a template that can then be brought into our component for reuse.
+
+```html
+<template id="header-reusable-styles">
+    <style>
+        h1 {
+            color: pink;
+        }
+    </style>
+</template>
+```
+
+```javascript
+class StyledHeader extends HTMLElement {
+    constructor() {
+        super();
+
+        const styleTemplate = document.querySelector('#header-reusable-styles');
+        const styleContent = document.importNode(styleTemplate.content, true);
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `<h1>I am styled with a reusable template</h1>`;
+        this.shadowRoot.appendChild(styleContent);
+    }
+}
+```
+
+With the template in place we can reuse it with any component that needs the same styling treatment without the duplication of code!
+
+## :host and :host-context psuedo classes
+
+We can now style elements inside the shadow DOM from outside using CSS custom properties, but what if we want to style the contents of the component based on properties of the host?
+
+The `:host` psuedo class can help. Using the `:host` psuedo class we can apply different styles depending on styles applied to our custom element. A quick example should help to clarify things:
+
+```javascript
+class StyledHeader extends HTMLElement {
+    constructor() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+        <style>
+            :host(color-red) {
+                color: red;
+            }
+            :host(color-blue) {
+                color: blue;
+            }
+        </style>
+        <h1><slot></slot></h1>
+        `;
+    }
+}
+```
+
+```html
+<styled-header>This text is the default (black)</styled-header>
+<styled-header class="color-red">This text is the red</styled-header>
+<styled-header class="color-blue">This text is the blue</styled-header>
+```
+
+This allows us to apply different styles depending on the styles being applied to the tag. We can go even further than this by gaining knowledge of the tags above our custom element to gain context for rendering.
+
+### :host-context psuedo class
+
+Having context for how the parent tags above an element can allow us to have different look and feel for different contexts. A simple example of this would be allowing context to italicize or bold text in our custom element. Consider the following markup:
+
+```html
+<context-aware-text>Nothing special</context-aware-text>
+<em>
+    <context-aware-text>Italicized</context-aware-text>
+</em>
+<strong>
+    <context-aware-text>Bold</context-aware-text>
+</strong>
+<em>
+    <strong>
+        <context-aware-text>Italicized and Bold</context-aware-text>
+    </strong>
+</em>
+```
+
+Without the `:host-context` psuedo class we would not have awareness to know if we should be bold, italicized, or neither. Here's an example of how we can make this work:
+
+```javascript
+class ContextAwareText extends HTMLElement {
+    constructor() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+        <style>
+            :host-context(em) {
+                font-style: italic;
+            }
+            :host-context(strong) {
+                font-weight: bold;
+            }
+        </style>
+        <h1><slot></slot></h1>
+        `;
+    }
+}
+```
+
+The example above should output:
+
+![Host context example](host-context-example.png)
+
+
