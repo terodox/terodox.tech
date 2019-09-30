@@ -23,7 +23,7 @@ Using the shadow DOM introduces a new way of thinking about styling content. The
 - [What does style isolation really mean?](#what-does-style-isolation-really-mean)
 - [CSS custom properties break the boundary](#css-custom-properties-break-the-boundary)
 - [Reusing styles](#reusing-styles)
-- [:host and :host-context psuedo classes](#host-and-host-context-psuedo-classes)
+- [:host and :host-context (experimental) psuedo classes](#host-and-host-context-experimental-psuedo-classes)
 - [::slotted psuedo element](#slotted-pseudo-element)
 
 ## What does style isolation really mean?
@@ -145,7 +145,7 @@ class StyledHeader extends HTMLElement {
 
 With the template in place we can reuse it with any component that needs the same styling treatment without the duplication of code!
 
-## :host and :host-context psuedo classes
+## :host and :host-context (experimental) psuedo classes
 
 We can now style elements inside the shadow DOM from outside using CSS custom properties, but what if we want to style the contents of the component based on properties of the host?
 
@@ -157,10 +157,10 @@ class StyledHeader extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
         <style>
-            :host(color-red) {
+            :host(.color-red) {
                 color: red;
             }
-            :host(color-blue) {
+            :host(.color-blue) {
                 color: blue;
             }
         </style>
@@ -178,7 +178,9 @@ class StyledHeader extends HTMLElement {
 
 This allows us to apply different styles depending on the styles being applied to the custom element tag. We can go even further than this by gaining knowledge of the tags above our custom element to gain context for rendering.
 
-### :host-context psuedo class
+### :host-context (experimental) psuedo class
+
+**NOTE:** This is still experimental and is only fully implemented in Chrome as I'm writing this post.
 
 Having context of the parent tags above an element can allow us to differentiate the look and feel for different contexts. A simple example of this would be allowing context to italicize or bold text in our custom element. Consider the following markup:
 
