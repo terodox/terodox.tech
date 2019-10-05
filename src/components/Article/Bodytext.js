@@ -71,6 +71,9 @@ const Bodytext = props => {
             font-style: italic;
             border-left: 3px solid rgb(112, 148, 37);
           }
+          :global(h6) {
+            margin-bottom: 16px;
+          }
         }
 
         @keyframes bodytextEntry {
