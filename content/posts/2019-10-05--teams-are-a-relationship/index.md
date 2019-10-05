@@ -8,7 +8,7 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Helena Lopes](https://unsplash.com/@wildlittlethingsphoto)
 
-Team: a number of persons associated together in work or activity. Our goal is to not just be a part of a team, but a high performing team. Pretending like the title didn't give this away, I firmly believe that teams are truly a relationship. The way we interact with together, the empathy we have for them, and our ability to work through conflict are all key aspects to maintaining a healthy relationship. They are also critical for forming and maintaining a high performing team.
+Team: a number of persons associated together in work or activity. Our goal is to not just be a part of a team, but a high performing team. Pretending like the title didn't give this away, I firmly believe that teams are truly a relationship. The way we interact with one another, the empathy we have for each other, and our ability to work through conflict are all key aspects to maintaining a healthy relationship. They are also critical for forming and maintaining a high performing team.
 
 ## A team is a relationship and should be treated like one
 
