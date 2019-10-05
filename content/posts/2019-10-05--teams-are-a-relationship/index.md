@@ -16,7 +16,7 @@ When we commit to a relationship in our personal life we get to make a choice ab
 
 A team is a group relationship. It requires care and thought in order for it to grow and succeed. Many times this is not a natural occurrence, and requires actual work to accomplish. A team that has bonded at an interpersonal level will have more empathy for one another, be more open in communication, and because of this will resolve conflict much more rapidly.
 
-Conflict resolution is the cornerstone to all relationships. When one or more team members are left with a lasting feeling of discontent after a conflict it is general very caustic. The goal of conflict is to drive creative problem solving, and a team that can resolve conflict quickly will be able to step into and out of a challenging discussion without holding a grudge.
+Conflict resolution is the cornerstone to all relationships. When one or more team members are left with a lasting feeling of discontent after a conflict it is generally very caustic. The goal of conflict is to drive creative problem solving, and a team that can resolve conflict quickly will be able to step into and out of a challenging discussion without holding a grudge.
 
 ## Empathy and conflict resolution
 
