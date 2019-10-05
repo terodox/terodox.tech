@@ -6,11 +6,11 @@ cover: meeting.jpg
 author: Andy Desmarais
 ---
 
-Cover photo credit: [Samuel Zeller](https://unsplash.com/@samuelzeller)
+###### Cover photo credit: [Samuel Zeller](https://unsplash.com/@samuelzeller)
 
-Any team can be defined by one thing above all others: cohesion. A cohesive team is one that appears to move in lock step toward a goal, while maintaining a high level of passion and happiness, even when working through challenging problems. This is not something accomplished easily, and requires commitment from every member of the team to succeed.
+Team: a number of persons associated together in work or activity. Our goal is to not just be a part of a team, but a high performing team. Pretending like the title didn't give this away, I firmly believe that teams are truly a relationship. The way we interact with together, the empathy we have for them, and our ability to work through conflict are all key aspects to maintaining a healthy relationship. They are also critical for forming and maintaining a high performing team.
 
-## An agile team is a relationship and should be treated like one
+## A team is a relationship and should be treated like one
 
 When we commit to a relationship in our personal life we get to make a choice about who we want to be with. This is obviously not always the case at our jobs. However, this is not a reason to believe that interpersonal relationships at our work are unimportant. Growing and bonding as a team can be a game changer.
 
