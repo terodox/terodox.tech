@@ -39,7 +39,7 @@
     "gatsby-plugin-sitemap": "2.2.17",
     "gatsby-plugin-styled-jsx": "3.1.9",
     "gatsby-plugin-styled-jsx-postcss": "2.0.2",
-    "gatsby-remark-autolink-headers": "2.1.13",
+    "gatsby-remark-autolink-headers": "2.1.14",
     "gatsby-remark-copy-linked-files": "2.1.25",
     "gatsby-remark-emojis": "0.3.2",
     "gatsby-remark-external-links": "0.0.4",
