@@ -8,7 +8,7 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [JJ Ying](https://unsplash.com/@jjying)
 
-While writing a fair amount API call in javascript I was getting frustrated with the process of validating the payload of each call. Working with my team we came up with a simple little method that would allow us to write a class for each API response and then `coerce` the response into that class.
+While writing a fair amount of API calls in javascript, I was getting frustrated with the process of validating the payload of each call. Working with my team we came up with a simple little method that would allow us to write a class for each API response and then `coerce` the response into that class.
 
 This code has a lot of universality and having copied it to a few projects we knew it was time for an npm package.
 
@@ -52,7 +52,7 @@ Notice that we are referencing the package name, and not the folder name! Checki
 /local/git/folder/main-project/node_modules/@meltwater/coerce -> /path/to/global/node/modules/node_modules/@meltwater/coerce -> /local/git/folder/coerce
 ```
 
-Now that we've created a reference in the main project, testing is locally was a simple as replacing the references in our files from:
+Now that we've created a reference in the main project, testing it locally is a simple as replacing the references in our files from:
 
 ```javascript
 import coerce from '../coerce';
@@ -72,14 +72,14 @@ Now that we've tested and everything is looking good, we should cleanup our loca
 
 ```bash
 cd local/git/folder/coerce
-npm link
+npm unlink
 ```
 
 In the main project we need to unlink, but we also need to reference the newly published package:
 
 ```bash
 cd local/git/folder/main-project
-npm link @meltwater/coerce
+npm un`link @meltwater/coerce
 npm i @meltwater/coerce
 ```
 
