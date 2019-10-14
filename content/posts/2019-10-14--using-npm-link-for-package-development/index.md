@@ -1,5 +1,5 @@
 ---
-title: "`npm-link` for package development"
+title: "Using npm-link for package development"
 comments: true
 category: NPM
 cover: chain.jpg
