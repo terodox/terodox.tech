@@ -21,7 +21,7 @@
     "algolia"
   ],
   "dependencies": {
-    "antd": "3.24.0",
+    "antd": "3.24.1",
     "fontfaceobserver": "2.1.0",
     "gatsby": "2.16.4",
     "gatsby-image": "2.2.29",
