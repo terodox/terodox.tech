@@ -52,7 +52,7 @@ Notice that we are referencing the package name, and not the folder name! Checki
 /local/git/folder/main-project/node_modules/@meltwater/coerce -> /path/to/global/node/modules/node_modules/@meltwater/coerce -> /local/git/folder/coerce
 ```
 
-Now that we've created a reference in the main project, testing it locally is a simple as replacing the references in our files from:
+Now that we've created a reference in the main project, testing it locally is as simple as replacing the references in our files from:
 
 ```javascript
 import coerce from '../coerce';
