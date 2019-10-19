@@ -46,4 +46,4 @@ The basics here are that we grab the button element using `document.querySelecto
 
 ## More advanced usage
 
-This has been a really simple example of how to work with the material components for web. In future posts I plan to cover more advanced topics like theming, advanced styling, and building web components to wrap them.
+This has been a really simple example of how to work with the material components for web. In future posts I plan to cover more advanced topics like setting up build tools, theming, advanced styling, and building web components to wrap them.
