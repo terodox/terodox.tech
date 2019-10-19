@@ -12,7 +12,7 @@ While writing a fair amount of API calls in javascript, I was getting frustrated
 
 This code has a lot of universality and having copied it to a few projects we knew it was time for an npm package.
 
-All of these uses were being shipped to production so we needed a safe way to extract this small function into a package and validate it is working properly before shipping to production again.
+All of these uses were being shipped to production so we needed a safe way to extract this small function into a package, and validate it was working properly before shipping to production again.
 
 ## `npm-link` to the rescue
 
@@ -35,7 +35,7 @@ The output of this helps us understand what's actually happening here.
 /path/to/global/node/modules/node_modules/@meltwater/coerce -> /local/git/folder/coerce
 ```
 
-A [symlink](https://en.wikipedia.org/wiki/Symbolic_link) was created in our global node_modules folder that points to our local version of coerce. Notice that the package name is used in the node_modules folder.  This will correspond to the `name` field in your package.json.
+A [symlink](https://en.wikipedia.org/wiki/Symbolic_link) was created in our global `node_modules` folder that points to our local version of coerce. Notice that the package name is used in the `node_modules` folder.  This will correspond to the `name` field in your package.json.
 
 ## Consuming a local npm package
 
