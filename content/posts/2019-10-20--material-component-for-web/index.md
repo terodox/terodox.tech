@@ -32,7 +32,9 @@ Bringing up [the docs for a button](https://material.io/develop/web/components/b
 @import "@material/button/mdc-button";
 ```
 
-The html is semantically driven with a button tag being the root of our work. The css classes are intuitively named for the tags required to make our button. There are a handful of additional styles we can apply to change the look and feel of the button.  Want a button with some elevation? Add the `mdc-button--raised` class to the button element. An outlined button is good for some scenarios, so add the `mdc-button--outlined` class for that.
+The html is semantically driven with a button tag being the root of our work. The css classes are intuitively named for the tags required to make our button.
+
+There are a handful of additional styles we can apply to change the look and feel of the button.  Want a button with some elevation? Add the `mdc-button--raised` class to the button element. An outlined button is good for some scenarios, so add the `mdc-button--outlined` class for that.
 
 Ok, but what about the iconic ripple the material design buttons are known for? This is where we need to bring in a sprinkling of javascript.
 
