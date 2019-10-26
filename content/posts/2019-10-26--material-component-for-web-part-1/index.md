@@ -1,5 +1,5 @@
 ---
-title: "Material Components for Web Part 1 - The basics"
+title: "Material Components for Web - Part 1 - The basics"
 comments: true
 category: Rant
 cover: blocks.jpg
