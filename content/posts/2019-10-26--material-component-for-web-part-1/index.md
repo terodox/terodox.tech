@@ -1,7 +1,7 @@
 ---
 title: "Material Components for Web - Part 1 - The basics"
 comments: true
-category: Rant
+category: Material Components
 cover: blocks.jpg
 author: Andy Desmarais
 ---
