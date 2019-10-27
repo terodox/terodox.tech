@@ -28,6 +28,8 @@ As an example, this command will monitor for changes to the `awsudo` package. Th
 npm hook add awsudo https://my.webhook.endpoint THE_MOST_SECRET_THING_ONE_CAN_IMAGINE
 ```
 
+You can register for changes on a package, a user, or even an entire namespace (eg. @babel).
+
 ## The webhook body
 
 The endpoint wired to npm hook will need to receive a POST request. The body of the post request is extremely verbose.
@@ -78,7 +80,7 @@ The other fields in the payload envelop are:
 
 Holy cow there was a lot there. These fields provide us almost all of the information we need to know to take action based on whatever type of change occurs.
 
-## The payload
+### The payload
 
 The payload of the hook is where the true verbosity comes into play. This payload will contain ALL of the information for ALL of the version of a package that have EVER BEEN RELEASED.
 
@@ -86,3 +88,46 @@ This doesn't seem like a big deal until you look at a package like [lodash](http
 
 The key piece here is the payload size can get very large, so plan accordingly.
 
+## Other `npm hook` commands
+
+There are three other commands available for managing npm hooks.
+
+### npm hook ls [entity]
+
+This allows you to see all of the hooks you have setup using just `npm hook ls`, or just hooks for a specific entity using `npm hook ls awsudo`, as an example.
+
+### npm hook update <id> <url> [secret]
+
+The logic follows the name on this one. Update an existing hook by its `id`. It does not require you to update the secret, but you can if needed.
+
+###### *More on getting the hook id below.*
+
+### npm hook rm <id>
+
+This one also reads as it acts, and will remove an existing webhook by its `id`.
+
+## Getting a hook id
+
+The frustrating thing is that you don't get the hook id back when you add it. The best way to get the id is to run `npm hook ls` and look through the table for the endpoint you need the id for.
+
+Example output:
+
+```bash
+┌──────────┬─────────────────────┬─────────────────────────────┐
+│ id       │ target              │ endpoint                    │
+├──────────┼─────────────────────┼─────────────────────────────┤
+│ hookidya │ awsudo              │ https://my.webhook.endpoint │
+│          ├─────────────────────┼─────────────────────────────┤
+│          │ triggered yesterday │ 204                         │
+└──────────┴─────────────────────┴─────────────────────────────┘
+```
+
+The id provided above is obviously fake, but you get the idea. Once you've gotten the id, then you can update or remove the hook as needed.
+
+## Limits
+
+A given user is only allowed to have 100 hooks at a tim (as of the writing of this article). So keep track of dead hooks and kill them if you don't need them.
+
+## Let you imagination run wile
+
+There are so many different uses for a webhook that watches for package changes. Simple things like slack updates, to managing release workflows based on published, to raising publishing release notes. The only limit will be your imagination!
