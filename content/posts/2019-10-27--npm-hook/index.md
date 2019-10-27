@@ -100,7 +100,7 @@ This allows you to see all of the hooks you have setup using just `npm hook ls`,
 
 The logic follows the name on this one. Update an existing hook by its `id`. It does not require you to update the secret, but you can if needed.
 
-###### *More on getting the hook id below.*
+*More on getting the hook id below.*
 
 ### npm hook rm <id>
 
