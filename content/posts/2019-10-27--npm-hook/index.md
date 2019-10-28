@@ -8,7 +8,9 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Kira auf der Heide](https://unsplash.com/@kadh)
 
-Webhooks have become a part of our everyday lives as developers. Whether it's Github kicking off a CI job or Slack being updated when a build finishes. We use webhooks to help us automate tasks that we want to avoid doing by hand. The npm registry has the ability to wire hooks that can follow either a specific package or an entire namespace. The value here is having a way to automate tasks based on any package changes. A simple example could be notifying slack when a new package is published. A more complex task would be to host a custom CDN for an entire namespace.
+Webhooks have become a part of our everyday lives as developers. Whether it's Github kicking off a CI job or Slack being updated when a build finishes. We use webhooks to help us automate tasks that we want to avoid doing by hand.
+
+The npm registry has the ability to wire hooks that can follow either a specific package or an entire namespace. The value here is having a way to automate tasks based on any package changes. A simple example could be notifying slack when a new package is published. A more complex task would be to host a custom CDN for an entire namespace.
 
 ## `npm hook`
 
@@ -87,6 +89,26 @@ The payload of the hook is where the true verbosity comes into play. This payloa
 This doesn't seem like a big deal until you look at a package like [lodash](https://www.npmjs.com/package/lodash) which has 108 versions. The payload size alone is 190 kb (24.7 kb gzipped).
 
 The key piece here is the payload size can get very large, so plan accordingly.
+
+## Validating the hook
+
+An important part of receiving a webhook is knowing that it's coming from a legitimate source. The npm hook can be validated by using the `x-npm-signature` header as a checksum.
+
+This header can be used to validated the payload was created by npm.  The `x-npm-signature` is created using the secret provided when setting up the hook.
+
+Validation can be done using the crypto lib built into node.
+
+```javascript
+const crypto  = require('crypto');
+const expectedSignature = crypto
+    .createHmac('sha256', npmHookSecret)
+    .update(requestBody)
+    .digest('hex');
+
+if (xNpmSignatureHeader !== `sha256=${expectedSignature}`) {
+    throw new Error('Bad signature received. Rejecting hook.');
+}
+```
 
 ## Other `npm hook` commands
 
