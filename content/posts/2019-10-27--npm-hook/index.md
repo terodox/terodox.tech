@@ -92,9 +92,9 @@ The key piece here is the payload size can get very large, so plan accordingly.
 
 ## Validating the hook
 
-An important part of receiving a webhook is knowing that it's coming from a legitimate source. The npm hook can be validated by using the `x-npm-signature` header as a checksum.
+An important part of receiving a webhook is knowing that it's coming from a legitimate source. The body from an npm hook can be validated by using the `x-npm-signature` header as a checksum.
 
-This header can be used to validated the payload was created by npm.  The `x-npm-signature` is created using the secret provided when setting up the hook.
+This header can be used to validate the payload was created by npm.  The `x-npm-signature` is created using the secret provided when setting up the hook.
 
 Validation can be done using the crypto lib built into node.
 
