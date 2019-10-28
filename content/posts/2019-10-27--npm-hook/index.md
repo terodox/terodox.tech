@@ -116,7 +116,7 @@ Example output:
 ┌──────────┬─────────────────────┬─────────────────────────────┐
 │ id       │ target              │ endpoint                    │
 ├──────────┼─────────────────────┼─────────────────────────────┤
-│ hookidya │ awsudo              │ https://my.webhook.endpoint │
+│ hookidxx │ awsudo              │ https://my.webhook.endpoint │
 │          ├─────────────────────┼─────────────────────────────┤
 │          │ triggered yesterday │ 204                         │
 └──────────┴─────────────────────┴─────────────────────────────┘
@@ -128,6 +128,6 @@ The id provided above is obviously fake, but you get the idea. Once you've gotte
 
 A given user is only allowed to have 100 hooks at a tim (as of the writing of this article). So keep track of dead hooks and kill them if you don't need them.
 
-## Let you imagination run wile
+## Let your imagination run wile
 
 There are so many different uses for a webhook that watches for package changes. Simple things like slack updates, to managing release workflows based on published, to raising publishing release notes. The only limit will be your imagination!
