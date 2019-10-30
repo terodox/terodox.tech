@@ -6,6 +6,7 @@ const Article = props => {
 
   return (
     <React.Fragment>
+      <div id="codefund" style="display: block !important; visibility: visible !important;"></div>
       <article className="article">{children}</article>
 
       {/* --- STYLES --- */}
