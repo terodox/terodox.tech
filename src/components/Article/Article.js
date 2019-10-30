@@ -6,11 +6,15 @@ const Article = props => {
 
   return (
     <React.Fragment>
-      <div id="codefund" style="display: block !important; visibility: visible !important;"></div>
+      <div id="codefund"></div>
       <article className="article">{children}</article>
 
       {/* --- STYLES --- */}
       <style jsx>{`
+        #codefund {
+          display: block !important;
+          visibility: visible !important;
+        }
         .article {
           padding: ${theme.space.inset.default};
           margin: 0 auto;
