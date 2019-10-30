@@ -35,12 +35,11 @@ const Post = props => {
 
   return (
     <React.Fragment>
+      <div id="codefund"></div>
       <header>
         <Headline title={title} theme={theme} />
         <Meta prefix={prefix} author={author} category={category} theme={theme} />
       </header>
-      <div id="codefund"></div>
-      <script src="https://codefund.io/properties/541/funder.js" async="async"></script>
       <Bodytext html={html} theme={theme} />
       <footer>
         <Share post={post} theme={theme} />
