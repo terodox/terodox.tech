@@ -12,6 +12,7 @@ const Article = props => {
       {/* --- STYLES --- */}
       <style jsx>{`
         #codefund {
+          min-height: 100px;
           display: block !important;
           visibility: visible !important;
         }
@@ -21,14 +22,18 @@ const Article = props => {
         }
         @from-width tablet {
           .article {
-            padding: ${`calc(${theme.space.default}) calc(${theme.space.default} * 2)`};
             max-width: ${theme.text.maxWidth.tablet};
+          }
+          #codefund {
+            padding: ${`calc(${theme.space.default}) calc(${theme.space.default} * 2)`};
           }
         }
         @from-width desktop {
           .article {
-            padding: ${`calc(${theme.space.default} * 2 + 90px) 0 calc(${theme.space.default} * 2)`};
             max-width: ${theme.text.maxWidth.desktop};
+          }
+          #codefund {
+            padding: ${`calc(${theme.space.default} * 2 + 90px) 0 calc(${theme.space.default} * 2)`};
           }
         }
       `}</style>
