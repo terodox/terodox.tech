@@ -7,7 +7,6 @@ const Article = props => {
   return (
     <React.Fragment>
       <div id="codefund"></div>
-      <script src="https://codefund.io/properties/541/funder.js" async="async"></script>
       <article className="article">{children}</article>
 
       {/* --- STYLES --- */}
