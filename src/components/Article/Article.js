@@ -12,6 +12,10 @@ const Article = props => {
 
       {/* --- STYLES --- */}
       <style jsx>{`
+        #codefund {
+          display: block !important;
+          visibility: visible !important;
+        }
         .article {
           padding: ${theme.space.inset.default};
           margin: 0 auto;
