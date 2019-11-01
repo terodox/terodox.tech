@@ -15,6 +15,9 @@ const Article = props => {
           min-height: 100px;
           display: block !important;
           visibility: visible !important;
+          background-color: red;
+          padding: ${theme.space.inset.default};
+          margin: 0 auto;
         }
         .article {
           padding: ${theme.space.inset.default};
@@ -25,6 +28,7 @@ const Article = props => {
             max-width: ${theme.text.maxWidth.tablet};
           }
           #codefund {
+            max-width: ${theme.text.maxWidth.tablet};
             padding: ${`calc(${theme.space.default}) calc(${theme.space.default} * 2)`};
           }
         }
@@ -33,6 +37,7 @@ const Article = props => {
             max-width: ${theme.text.maxWidth.desktop};
           }
           #codefund {
+            max-width: ${theme.text.maxWidth.desktop};
             padding: ${`calc(${theme.space.default} * 2 + 90px) 0 calc(${theme.space.default} * 2)`};
           }
         }
