@@ -121,7 +121,6 @@ class Header extends React.Component {
             margin: ${theme.space.inline.default};
             overflow: hidden;
             width: 44px;
-            transition: all 0.5s;
 
             .homepage & {
               height: 60px;
@@ -179,7 +178,6 @@ class Header extends React.Component {
               top: 0;
               width: 100%;
               justify-content: space-between;
-              transition: padding 0.5s;
 
               &.fixed {
                 height: ${theme.header.height.fixed};

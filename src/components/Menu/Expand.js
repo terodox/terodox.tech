@@ -41,7 +41,6 @@ const Expand = props => {
             }
 
             :global(svg) {
-              transition: all 0.5s;
               transform: rotateZ(180deg);
               fill: ${theme.color.special.attention};
             }
@@ -63,7 +62,6 @@ const Expand = props => {
             border-radius: ${theme.size.radius.small};
             border: 1px solid ${theme.line.color};
             display: flex;
-            transition: background-color ${theme.time.duration.default};
             justify-content: center;
             align-items: center;
             padding: 0;
@@ -72,11 +70,7 @@ const Expand = props => {
             &:focus,
             &:hover {
               outline: none;
-            }
-
-            :global(svg) {
-              transition: all ${theme.time.duration.default};
-            }
+            }\
 
             :global(.homepage) & {
               border: 1px solid transparent;
