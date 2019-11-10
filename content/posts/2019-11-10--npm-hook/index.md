@@ -61,16 +61,16 @@ The outer portion (payload envelope) of the request contains the event type, whi
 - `package:dist-tag` -- Dist tag added
 - `package:dist-tag-rm` -- Dist tag removed
 - `package:deprecated` -- A version was deprecated
-- `package:undeprecated` -- A version was undeprecared
+- `package:undeprecated` -- A version was undeprecated
 - `package:owner` -- Added an owner (maintainer)
 - `package:owner-rm` -- Removed an owner
 - `package:star` -- A package was starred
-- `package:unstar` -- A pckage was unstarred
-- `package:change` -- **SPECIAL:** This is a catchall event. if for some reason im unable to identify the change type this type will be served
+- `package:unstar` -- A package was unstarred
+- `package:change` -- **SPECIAL:** This is a catchall event. If, for some reason, they're unable to identify the change type, this type will be served
 
 ###### Pulled from [this documentation](https://github.com/npm/registry/blob/master/docs/hooks/hooks-payload.md#events)
 
-The other fields in the payload envelop are:
+The other fields in the payload envelope are:
 
 - `name` -- The package being the event occurred on. Ex. `awsudo`
 - `type` -- The only currently supported type is `package` (As of the time this article was written)
@@ -78,7 +78,7 @@ The other fields in the payload envelop are:
 - `hookOwner` -- An object with a username property. The username who created/owns the hook.
 - `payload` -- The same data as curling the registry directly https://registry.npmjs.com/[PACKAGE_NAME] ** More below
 - `change` -- Not always available! When it is available it will contain the attributes that were modified and used to identify the change type. The keys in this object will change depending on the event type.
-- `time` -- Unix timestamp in ms. More importantly it's a nonce that can be used to prevent replay attacks.
+- `time` -- Unix timestamp in ms. More importantly it's a nonce (single use value) that can be used to prevent replay attacks.
 
 Holy cow there was a lot there. These fields provide us almost all of the information we need to know to take action based on whatever type of change occurs.
 
@@ -148,7 +148,7 @@ The id provided above is obviously fake, but you get the idea. Once you've gotte
 
 ## Limits
 
-A given user is only allowed to have 100 hooks at a tim (as of the writing of this article). So keep track of dead hooks and kill them if you don't need them.
+A given user is only allowed to have 100 hooks at a time (as of the writing of this article). So keep track of dead hooks and kill them if you don't need them.
 
 ## Let your imagination run wile
 
