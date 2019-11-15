@@ -198,7 +198,6 @@ class Menu extends React.Component {
                 top: 0;
                 height: 1px;
                 background: ${theme.color.brand.primary};
-                margin-bottom: 60px
               }
 
               &.open {
