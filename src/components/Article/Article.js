@@ -16,14 +16,14 @@ const Article = props => {
         }
         @from-width tablet {
           .article {
-            max-width: ${theme.text.maxWidth.tablet};
             padding: ${`calc(${theme.space.default}) calc(${theme.space.default} * 2)`};
+            max-width: ${theme.text.maxWidth.tablet};
           }
         }
         @from-width desktop {
           .article {
-            max-width: ${theme.text.maxWidth.desktop};
             padding: ${`calc(${theme.space.default} * 2 + 90px) 0 calc(${theme.space.default} * 2)`};
+            max-width: ${theme.text.maxWidth.desktop};
           }
         }
       `}</style>
