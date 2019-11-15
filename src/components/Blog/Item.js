@@ -64,6 +64,7 @@ const Item = props => {
           margin: ${`calc(${theme.space.default} * 2) 0 calc(${theme.space.default} * 3)`};
           padding: ${theme.space.inset.s};
           position: relative;
+          transition: all ${theme.time.duration.default};
           background: transparent;
 
           :global(.gatsby-image-outer-wrapper) {
@@ -83,6 +84,7 @@ const Item = props => {
             bottom: ${`calc(${theme.space.default} * -1.5)`};
             left: 50%;
             transform: translateX(-50%);
+            transition: all ${theme.time.duration.default};
             width: 50%;
           }
 
@@ -95,6 +97,7 @@ const Item = props => {
               top: ${`calc(${theme.space.default} * -1.5)`};
               left: 50%;
               transform: translateX(-50%);
+              transition: all ${theme.time.duration.default};
               width: 50%;
             }
           }
@@ -157,6 +160,7 @@ const Item = props => {
           h1 {
             font-size: ${`calc(${theme.blog.h1.size} * 1.2)`};
             padding: ${`calc(${theme.space.default} * 1.5) ${theme.space.default} 0`};
+            transition: all 0.5s;
           }
           .meta {
             padding: ${`calc(${theme.space.m} * 1.5) ${theme.space.m}`};
@@ -215,6 +219,9 @@ const Item = props => {
                 transform: translateX(0);
               }
             }
+            :global(.gatsby-image-wrapper) {
+              transition: all ${theme.time.duration.default};
+            }
             :global(.arrow) {
               display: inline-block;
               fill: ${theme.color.special.attention};
@@ -222,6 +229,7 @@ const Item = props => {
               stroke-width: 40;
               stroke-linecap: round;
               opacity: 0;
+              transition: all 0.5s;
               transform: translateX(-50%);
             }
           }

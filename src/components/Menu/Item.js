@@ -23,6 +23,7 @@ const Item = props => {
         .item,
         .showItem {
           background: transparent;
+          transition: all ${theme.time.duration.default};
           display: flex;
           align-items: center;
 
@@ -47,6 +48,7 @@ const Item = props => {
             :global(a) {
               color: ${theme.text.color.primary};
               padding: ${theme.space.inset.s};
+              transition: all ${theme.time.duration.default};
               border-radius: ${theme.size.radius.small};
             }
 
@@ -57,6 +59,10 @@ const Item = props => {
             :global(a:hover) {
               color: ${theme.color.brand.primary};
               background: color(white alpha(-60%));
+            }
+
+            :global(svg) {
+              transition: all ${theme.time.duration.default};
             }
 
             &:hover :global(svg) {

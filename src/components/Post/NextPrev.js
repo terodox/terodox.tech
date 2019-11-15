@@ -93,6 +93,7 @@ const NextPrev = props => {
             }
             :global(svg) {
               margin: ${theme.space.inline.s};
+              transition: all 0.5s;
             }
           }
 
