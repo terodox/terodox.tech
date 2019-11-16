@@ -68,20 +68,49 @@ If you look at the `package.json` you'll notice that all of the scripts are powe
 
 You probably also noticed that there are no js files in this project. Stencil is very heavily bought into the Typescript eco-system. It's a part of what makes things like decorators more straight forward.
 
-The project is typescript all the way down to their configuration file.
+The project is typescript all the way down to their configuration files.
 
 ## First component
 
 If you open `src/components/my-component/my-component.tsx` you'll see a small amount of cade designed display a persons name.
 
-- First component
-  - Decorators
-    - @Component
-    - @Prop
-    - @Element
-  - Shadow or not to shadow
-  - Scoped styling
-  - jsx to render
-- Component interaction
-  - @Event
-  - @Listen
+Just before the class declaration is the [`@Component` decorator](https://stenciljs.com/docs/component).  This decorator is very similar to the Angular `@Component` decorator.  It lets you define the `tag` that will represent the class, the css file to be used, and the `shadow` boolean to state whether or not the component should be using the shadow DOM.
+
+There are a few other properties you can set on the component, but we'll cover those in a later post.
+
+### Props
+
+There are three `@Prop` entries.  These represent both attributes and properties on the web component.
+
+Properties: Programmatically accessible on an instance of the DOM node.
+Attributes: Added to the tag in the DOM. Eg href on an anchor tag.
+
+We need to have coverage for both properties and attributes because attributes do not support complex data types. The only type attributes support is string. This means you can pass all of the primitive types into attributes easily as strings, but complex types would require serialization to a string.
+
+You should also take note of the comments above each of the props.  These comments will be turned into the Description column of the table in the auto-generated README file in the same directory as the component. This README can have custom content added above the delimiter. It's a super quick and simple way to document each component as it's built.
+
+### Rendering
+
+If you've done any React development then the `render()` method should look very familiar. It's a very straightforward jsx statement that returns out the concatenated name.
+
+You can return a JSX object, or an array of JSX objects.
+
+## Testing
+
+Writing code should always be accompanied by tests that help the next dev (or you 6 months from now) better understand the purpose of the code. In the case of Stencil the suggest end to end testing as a way to handle this.
+
+Right alongside the component is an e2e.ts file which has a basic set of tests in it to cover the logic about retrieving a full name.
+
+Stencil utilizes puppeteer to drive browser based tests with Jest.  This means you'll be testing your components in am actual browser instead a node environment. This makes it a bit closer to the reality the component will experience when deployed to a live site.
+
+## Wrapping up
+
+Stencil makes creating web components a very simple process, and with a little bit of work you can have a very well documented and full functional component.
+
+My plan for the next few parts of this series is to cover:
+- `@Component` decorator deep dive
+- `@Prop`, `@Watch` and `@Method` decorators deep dive
+- `@Event` and `@Listen` decorators dee
+- `@State` decorator deep dive
+- `<Host>` element and how/why to use it
+- Using Sass with Stencil
