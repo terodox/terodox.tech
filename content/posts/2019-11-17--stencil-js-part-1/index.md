@@ -1,7 +1,7 @@
 ---
 title: "StencilJs - Part 1 - Quick Intoruction"
 comments: true
-category: StencilJs
+category: WebComponents
 cover: stencil.jpg
 author: Andy Desmarais
 ---
