@@ -148,7 +148,7 @@ Stencil utilizes puppeteer to drive browser based tests with Jest.  This means y
 
 ## Wrapping up
 
-Stencil makes creating web components a very simple process, and with a little bit of work you can have a very well documented and full functional component.
+Stencil makes creating web components a very simple process, and with a little bit of work you can have a very well documented and fully functional component.
 
 My plan for the next few parts of this series is to cover:
 
