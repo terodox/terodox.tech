@@ -23,7 +23,7 @@ In this article we'll cover:
 
 ## Why does Stencil exist
 
-Stencil is built by the Ionic team. They had an issue trying to build their component sets in a way that allowed the creation of PWAs (progressive web apps). They attempted and failed to build a PWA using Angular as the core of the component set, and found they were just shipping too much code to make it possible. When they took a step back and looked at the problem wholistically they found that picking any framework was not going to be tenable.
+Stencil is built by the Ionic team. They had an issue trying to build their component sets in a way that allowed the creation of PWAs (progressive web apps). They attempted and failed to build a PWA using Angular as the core of the component set, and found they were just shipping too much code to make it possible. When they took a step back and looked at the problem holistically they found that picking any framework was not going to be tenable.
 
 This challenge and the requirement for cross framework functionality drove them to pick Web Components.
 
@@ -37,7 +37,7 @@ There's an [entire talk](https://www.youtube.com/watch?v=UfD-k7aHkQE) digging in
 
 Stencil's main goal is to simplify the process of building web components. They have a unique mix of Angular like decorators and React like JSX. This provides a straight-forward way to solve some of the more detail oriented problems that make the native APIs painful.
 
-They start by abstracting away the Custom Element entirely. This give them the ability to highly optimize the resulting web component. They are also using a virtual DOM to manage change detection. They worked hard to have an asynchronous rendering engine that was inspired by React Fiber.
+They start by abstracting away the Custom Element entirely. This gives them the ability to highly optimize the resulting web component. They are also using a virtual DOM to manage change detection. They worked hard to have an asynchronous rendering engine that was inspired by React Fiber.
 
 That's enough of the what and why. Let's get started!
 
@@ -81,7 +81,7 @@ The project is typescript all the way down to their configuration files.
 
 ## Your first component
 
-If you open `src/components/my-component/my-component.tsx` you'll see a small amount of cade designed display a persons name.
+If you open `src/components/my-component/my-component.tsx` you'll see a small amount of code designed to display a person's name.
 
 Here's the guts of the component:
 
@@ -126,7 +126,7 @@ There are a few other properties you can set on the component, but we'll cover t
 There are three `@Prop` entries.  These represent both attributes and properties on the web component.
 
 Properties: Programmatically accessible on an instance of the DOM node.
-Attributes: Added to the tag in the DOM. Eg href on an anchor tag.
+Attributes: Added to the tag in the DOM. Eg. the `href` attribute on an anchor tag.
 
 We need to have coverage for both properties and attributes because attributes do not support complex data types. The only type attributes support is string. This means you can pass all of the primitive types into attributes easily as strings, but complex types would require serialization to a string.
 
@@ -144,16 +144,17 @@ Writing code should always be accompanied by writing tests that help the next de
 
 Alongside the component tsx file is an e2e.ts file which has a basic set of tests in it to cover the logic in our component.
 
-Stencil utilizes puppeteer to drive browser based tests with Jest.  This means you'll be testing your components in am actual browser instead a node environment. This makes it a bit closer to the reality the component will experience when deployed to a live site.
+Stencil utilizes puppeteer to drive browser based tests with Jest.  This means you'll be testing your components in an actual browser instead a node environment. This makes it a bit closer to the reality the component will experience when deployed to a live site.
 
 ## Wrapping up
 
 Stencil makes creating web components a very simple process, and with a little bit of work you can have a very well documented and full functional component.
 
 My plan for the next few parts of this series is to cover:
+
 - `@Component` decorator deep dive
 - `@Prop`, `@Watch` and `@Method` decorators deep dive
-- `@Event` and `@Listen` decorators dee
+- `@Event` and `@Listen` decorators deep dive
 - `@State` decorator deep dive
 - `<Host>` element and how/why to use it
 - Using Sass with Stencil
