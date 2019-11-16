@@ -74,6 +74,40 @@ The project is typescript all the way down to their configuration files.
 
 If you open `src/components/my-component/my-component.tsx` you'll see a small amount of cade designed display a persons name.
 
+Here's the guts of the component:
+
+```tsx
+@Component({
+  tag: 'my-component',
+  styleUrl: 'my-component.css',
+  shadow: true
+})
+export class MyComponent {
+  /**
+   * The first name
+   */
+  @Prop() first: string;
+
+  /**
+   * The middle name
+   */
+  @Prop() middle: string;
+
+  /**
+   * The last name
+   */
+  @Prop() last: string;
+
+  private getText(): string {
+    return `${this.first} ${this.middle} ${this.last}`;
+  }
+
+  render() {
+    return <div>Hello, World! I'm {this.getText()}</div>;
+  }
+}
+```
+
 Just before the class declaration is the [`@Component` decorator](https://stenciljs.com/docs/component).  This decorator is very similar to the Angular `@Component` decorator.  It lets you define the `tag` that will represent the class, the css file to be used, and the `shadow` boolean to state whether or not the component should be using the shadow DOM.
 
 There are a few other properties you can set on the component, but we'll cover those in a later post.
@@ -97,9 +131,9 @@ You can return a JSX object, or an array of JSX objects.
 
 ## Testing
 
-Writing code should always be accompanied by tests that help the next dev (or you 6 months from now) better understand the purpose of the code. In the case of Stencil the suggest end to end testing as a way to handle this.
+Writing code should always be accompanied by writing tests that help the next dev (or you 6 months from now) better understand the purpose of the code. In the case of Stencil they suggest end to end testing as a way to handle this.
 
-Right alongside the component is an e2e.ts file which has a basic set of tests in it to cover the logic about retrieving a full name.
+Alongside the component tsx file is an e2e.ts file which has a basic set of tests in it to cover the logic in our component.
 
 Stencil utilizes puppeteer to drive browser based tests with Jest.  This means you'll be testing your components in am actual browser instead a node environment. This makes it a bit closer to the reality the component will experience when deployed to a live site.
 
