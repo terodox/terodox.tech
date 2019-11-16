@@ -12,9 +12,18 @@ I've covered building native web components [in a past series](/web-components-p
 
 I'm not going to dig into what a design system is here. That's a post unto itself. For the purposes of this article, I'll focus primarily on getting started with Stencil.
 
+In this article we'll cover:
+
+- [Why does Stencil exist](#why-does-stencil-exist)
+- [What is Stencil](#what-is-stencil)
+- [Getting started building components](#getting-started-building-components)
+- [Project structure](#project-structure)
+- [Your first component](#your-first-component)
+- [Testing](#testing)
+
 ## Why does Stencil exist
 
-Stencil is built by the Ionic team. They had an issue trying to build they component sets in a way that allowed the creation of PWAs (progressive web apps). They attempted and failed to build a PWAS using Angular as the core of the component set. When they took a step back and looked at the problem wholistically they found that picking any framework was not going to be tenable.
+Stencil is built by the Ionic team. They had an issue trying to build their component sets in a way that allowed the creation of PWAs (progressive web apps). They attempted and failed to build a PWA using Angular as the core of the component set, and found they were just shipping too much code to make it possible. When they took a step back and looked at the problem wholistically they found that picking any framework was not going to be tenable.
 
 This challenge and the requirement for cross framework functionality drove them to pick Web Components.
 
@@ -32,7 +41,7 @@ They start by abstracting away the Custom Element entirely. This give them the a
 
 That's enough of the what and why. Let's get started!
 
-## Getting started
+## Getting started building components
 
 Stencil has a [whole section](https://stenciljs.com/docs/getting-started) of their site dedicated to getting started. I'm going to be a bit more high level than their walk through.
 
@@ -70,7 +79,7 @@ You probably also noticed that there are no js files in this project. Stencil is
 
 The project is typescript all the way down to their configuration files.
 
-## First component
+## Your first component
 
 If you open `src/components/my-component/my-component.tsx` you'll see a small amount of cade designed display a persons name.
 
