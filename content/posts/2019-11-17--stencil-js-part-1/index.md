@@ -1,5 +1,5 @@
 ---
-title: "StencilJs - Part 1 - Quick Intoruction"
+title: "StencilJs - Part 1 - Quick Introduction"
 comments: true
 category: WebComponents
 cover: stencil.jpg
@@ -8,9 +8,9 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Marija Zaric](https://unsplash.com/@simplicity)
 
-I've covered building native web components [in a past series](/web-components-part-1). There's a lot of boilerplate that can creep in as you write many web components. This is increasingly true if you're planning to build an entire design system worth of components. [Stencil Js](https://stenciljs.com/) (or just Stencil for short) aims to solve the problem of building and maintaining a large number of web components.
+I've covered building native web components [in a past series](/web-components-part-1). There's a lot of boilerplate that can creep in as you write web components. This is increasingly true if you're planning to build an entire design system worth of components. [Stencil Js](https://stenciljs.com/) (or just Stencil for short) aims to solve the problem of building and maintaining a large number of web components.
 
-I'm not going to dig into what a design system is here. That's a book unto itself. For the purposes of this article, I'll focus primarily on getting started with StencilJs.
+I'm not going to dig into what a design system is here. That's a post unto itself. For the purposes of this article, I'll focus primarily on getting started with Stencil.
 
 ## Why does Stencil exist
 
