@@ -34,7 +34,7 @@ We'll cover:
 - [StyleUrl](#styleurl)
 - [StyleUrls](#styleurls)
 - [Styles](#styles)
-- [AssetsUrls](#asseturls)
+- [AssetsDirs](#assetdirs)
 
 ## Scoped styles
 
