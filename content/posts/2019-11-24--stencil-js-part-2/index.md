@@ -12,6 +12,8 @@ This article assumes you have a working knowledge of web components. If you don'
 
 It's also building on a [previous article](/stencil-js-part-1), so please check that out too.
 
+// TODO TOC
+
 ## @Component decorator
 
 Stencil, like almost all modern front-end frameworks, revolves around creating components. The syntax for creating a component in Stencil is:
