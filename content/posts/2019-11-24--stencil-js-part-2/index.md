@@ -124,3 +124,19 @@ When you need to load a local asset in a component it can complicate the build. 
 The path can be any relative path to a directory from the component file.
 
 In your component you will use the `getAssetPath()` function to resolve the run time location of the static asset you're trying to load.
+
+Here's an example usage:
+
+```tsx
+@Component({
+  tag: 'my-custom-element',
+  assetsDirs: [
+      '../../assets'
+  ]
+})
+export class MyCustomElement {
+  render() {
+    return <img src={getAssetPath('../../assets/things.jpg')} />;
+  }
+}
+```
