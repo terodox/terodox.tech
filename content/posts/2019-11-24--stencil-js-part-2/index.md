@@ -12,8 +12,6 @@ This article assumes you have a working knowledge of web components. If you don'
 
 It's also building on a [previous article](/stencil-js-part-1), so please check that out too.
 
-// TODO TOC
-
 ## @Component decorator
 
 Stencil, like almost all modern front-end frameworks, revolves around creating components. The syntax for creating a component in Stencil is:
@@ -29,6 +27,15 @@ This is the simplest version of a component that can be created with Stencil.
 
 But we're not here for simple. Today we're going to talk about the more complex use cases Stencil's @Component decorator helps us solve.
 
+We'll cover:
+
+- [Scoped Styles](#scoped-styles)
+- [Shadow DOM flag](#shadow-dom-flag)
+- [StyleUrl](#styleurl)
+- [StyleUrls](#styleurls)
+- [Styles](#styles)
+- [AssetsUrls](#asseturls)
+
 ## Scoped styles
 
 This will only be pertinent if you are NOT using the shadow DOM. This flag will cause Stencil to scope styles for you. With scoped styles you can still write simple selectors like `h1 {}` without having to worry about affecting the whole document.
@@ -43,7 +50,7 @@ Here's an example usage:
 export class MyCustomElement {}
 ```
 
-## Shadow DOM
+## Shadow DOM flag
 
 There's a simple flag for enabling the shadow DOM on a Stencil component. Not a whole lot of explanation needed for this one.
 
