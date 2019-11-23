@@ -19,7 +19,6 @@ The @Prop and @Method decorators help us provide the interface for our web compo
 There are some misnomers and nuance to be aware of with each of the three decorators. We;re going to take a deep look at:
 
 - @Prop
-  -
 - @Watch
 - @Method
 
@@ -131,7 +130,7 @@ The output of this is:
 
 ### Attribute name
 
-A common problem with writing web components is the desire to have the class property name differ from the attribute name on the tag. You may want `isValid` as the property, but `valid` as the attribute. This can be accomplished using the `attribute` property of `@Prop`.
+A common problem with writing web components with Stencil is the desire to have the class property name differ from the attribute name on the tag. You may want `isValid` as the property, but `valid` as the attribute. This can be accomplished using the `attribute` property of `@Prop`.
 
 Quick example:
 
@@ -148,7 +147,7 @@ export class MyCustomElement {
 DOM usage:
 
 ```html
-<my-custom-element attribute="Simpler" same-as-attribute="potentially more complex"></my-custom-element>
+<my-custom-element different="Simpler" same-as-property="potentially more complex"></my-custom-element>
 ```
 
 ### Immutability
@@ -200,3 +199,6 @@ After component is loaded the DOM will reflect the `aReflectedProp` value.
 ```html
 <my-custom-element a-reflected-prop="I am reflected"></my-custom-element>
 ```
+
+## @Watch decorator
+
