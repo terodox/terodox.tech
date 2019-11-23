@@ -1,5 +1,5 @@
 ---
-title: "StencilJs - Part 1 - @Prop, @Watch, and @Method Decorators"
+title: "StencilJs - Part 3 - @Prop, @Watch, and @Method Decorators"
 comments: true
 category: WebComponents
 cover: knobs-and-switches.jpg
