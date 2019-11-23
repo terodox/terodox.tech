@@ -128,7 +128,7 @@ export class MyCustomElement {
 
 ## AssetsDirs
 
-When you need to load a local asset in a component it can complicate the build. Stencil tries to keep this a bit more seamless with the use of `assetsDirs`. This property allows you to specify local folder that can will contain assets needed for this specific component.
+When you need to load a local asset in a component it can complicate the build. Stencil tries to keep this a bit more seamless with the use of `assetsDirs`. This property allows you to specify local folder that contains assets needed for this specific component. The stencil build will make sure these assets are brought along for publishing.
 
 The path can be any relative path to a directory from the component file.
 
