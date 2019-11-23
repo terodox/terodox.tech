@@ -19,6 +19,7 @@ The @Prop and @Method decorators help us provide the interface for our web compo
 There are some misnomers and nuance to be aware of with each of the three decorators. We;re going to take a deep look at:
 
 - @Prop
+  -
 - @Watch
 - @Method
 
@@ -128,11 +129,9 @@ The output of this is:
 <div>https://google.com/</div>
 ```
 
-### Immutability
+### Attribute name
 
-The first major note is the all class properties decorated with `@Prop` are immutable by default. This is good basic practice to ensure a more one-way binding approach is being taken.
-
-However, there are exceptions to every rule, and because of this Stencil allows you to override this default. Setting the `mutable` property on the `@Prop` decorator will allow you to modify the value of the property.
+A common problem with writing web components is the desire to have the class property name differ from the attribute name on the tag. You may want `isValid` as the property, but `valid` as the attribute. This can be accomplished using the `attribute` property of `@Prop`.
 
 Quick example:
 
@@ -141,11 +140,63 @@ Quick example:
   tag: 'my-custom-element'
 })
 export class MyCustomElement {
-  @Prop({ mutable: true }) aMutableProp: string = 'a mutable default';
-  @Prop() immutableProp: string = 'Cannot be changed later;
+  @Prop({ attribute: 'different' }) differentFromProperty: string;
+  @Prop() sameAsProperty: string;
+}
+```
+
+DOM usage:
+
+```html
+<my-custom-element attribute="Simpler" same-as-attribute="potentially more complex"></my-custom-element>
+```
+
+### Immutability
+
+It's important to know that all of the class properties marked with `@Prop` should be treated as immutable by default. This is good basic practice to ensure a more one-way binding approach is being taken.
+
+However, there are exceptions to every rule, and because of this Stencil allows you to override this default. Setting the `mutable` property on the `@Prop` decorator will tell consumers you plan to modify the value of the property.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Prop({
+    mutable: true // Defaults to false
+  }) aMutableProp: string = 'A mutable default';
+  @Prop() immutableProp: string = 'Should not be changed later';
 
   componentDidLoad() {
-
+    this.aMutableProp = 'Something completely different';
   }
 }
+```
+
+**NOTE:** As of version Stencil 1.3.3 they do not appear to be enforcing this! It's up to you as a developer to be disciplined in using this property appropriately. You will not get an error if you change a prop that is not marked `mutable: false`, which is the current default.
+
+### Reflect
+
+This property is designed to allow you to reflect values of `@Prop` properties as attributes on the custom element tag. This is valuable for providing the DOM with updates as values are changing in your custom element.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Prop({
+    reflect: true // Defaults to false
+  }) aReflectedProp: string = 'I am reflected';
+  @Prop() unreflectedProp: string = 'I am not shown in the DOM';
+}
+```
+
+After component is loaded the DOM will reflect the `aReflectedProp` value.
+
+```html
+<my-custom-element a-reflected-prop="I am reflected"></my-custom-element>
 ```
