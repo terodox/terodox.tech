@@ -14,13 +14,13 @@ It's also building on a [previous article](/stencil-js-part-1), so please check 
 
 ## Component interfaces
 
-The @Prop and @Method decorators help us provide the interface for our web components to consumers. The handle the public facing contact that consumers will use to interact with, and update, our components.
+The `@Prop` and `@Method` decorators help us provide the interface for our web components to consumers. They handle the public facing contract that consumers will use to interact with and update our components.
 
-There are some misnomers and nuance to be aware of with each of the three decorators. We;re going to take a deep look at:
+There are some misnomers and nuance to be aware of with each of the three decorators. We're going to take a deep look at:
 
-- @Prop
-- @Watch
-- @Method
+- [@Prop](the-prop-decorator)
+- [@Watch](the-watch-decorator)
+- [@Method](the-method-decorator)
 
 ## The @Prop decorator
 
@@ -200,7 +200,7 @@ After component is loaded the DOM will reflect the `aReflectedProp` value.
 <my-custom-element a-reflected-prop="I am reflected"></my-custom-element>
 ```
 
-## @Watch decorator
+## The @Watch decorator
 
 If you read through my series on web components you'll know about the [attributeChangedCallback](https://terodox.tech/web-components-part-2#attributechangedcallback). The `@Watch` decorator is how Stencil exposes this functionality.
 
@@ -230,7 +230,7 @@ export class MyCustomElement {
 }
 ```
 
-## @Method decorator
+## The @Method decorator
 
 This might sound odd, but don't use this if at all possible. Using publicly facing methods will be much more challenging for a consumer then a prop/attribute. They are available if you cannot find a way to work with a prop/attribute effectively.
 
