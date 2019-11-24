@@ -152,7 +152,7 @@ Stencil makes creating web components a very simple process, and with a little b
 
 My plan for the next few parts of this series is to cover:
 
-- `@Component` decorator deep dive
+- [`@Component` decorator deep dive](/stencil-js-part-2)
 - `@Prop`, `@Watch` and `@Method` decorators deep dive
 - `@Event` and `@Listen` decorators deep dive
 - `@State` decorator deep dive
