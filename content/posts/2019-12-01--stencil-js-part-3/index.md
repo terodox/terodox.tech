@@ -202,3 +202,75 @@ After component is loaded the DOM will reflect the `aReflectedProp` value.
 
 ## @Watch decorator
 
+If you read through my series on web components you'll know about the [attributeChangedCallback](https://terodox.tech/web-components-part-2#attributechangedcallback). The `@Watch` decorator is how Stencil exposes this functionality.
+
+`@Watch` takes the name of the `@Prop` variable to watch as a parameter. Any time the value of that prop changes the function decorated by `@Watch` will be invoked with the 'newValue' and 'oldValue' as parameters. This is called first out of the lifecycle callbacks after a prop changes.
+
+The value of `@Watch` is that you can do property validation before any of the other lifecycle events fire. If someone provided an invalid value to the `@Prop`, then throwing an error and correcting can prevent any potential odd behavior.
+
+**NOTE:** `@Watch` is NOT invoked for the first render. It is only invoked for subsequent changes.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  private isInvalidUsername: boolean = false;
+
+  @Prop() username: string;
+  @Watch('username')
+  validateDate(newValue, oldValue) {
+      if(newValue.trim() === '') {
+          isInvalidUsername = true;
+          throw new Error('username is required');
+      }
+  }
+}
+```
+
+## @Method decorator
+
+This might sound odd, but don't use this if at all possible. Using publicly facing methods will be much more challenging for a consumer then a prop/attribute. They are available if you cannot find a way to work with a prop/attribute effectively.
+
+Now let's talk about how they actually work!
+
+The `@Method` decorator is designed to let a consumer know about a publicly facing method. It has only one requirement: the function MUST return a promise. This can be accomplished either by marking the function `async`, or by returning a promise directly.
+
+Quick example: [mirrors Stencil docs](https://stenciljs.com/docs/methods#method-decorator)
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+    // VALID: using async
+    @Method()
+    async myMethod() {
+        return 42;
+    }
+
+    // VALID: using Promise.resolve()
+    @Method()
+    myMethod2() {
+        return Promise.resolve(42);
+    }
+
+    // VALID: even it returns nothing, async will force it to return a promise
+    @Method()
+    async myMethod3() {
+        console.log(42);
+    }
+
+    // INVALID
+    @Method()
+    notOk() {
+        return 42;
+    }
+}
+```
+
+## Wrapping up
+
+This article covers all of the ways a consumer can directly interact with a Stencil component. It is strongly recommended to use `@Prop` instead of `@Method` for interacting with a component, and `@Watch` gives us a way to handle validation we would otherwise need a method for.
