@@ -18,13 +18,13 @@ The `@Prop` and `@Method` decorators help us provide the interface for our web c
 
 There are some misnomers and nuance to be aware of with each of the three decorators. We're going to take a deep look at:
 
-- [@Prop](the-prop-decorator)
-- [@Watch](the-watch-decorator)
-- [@Method](the-method-decorator)
+- [@Prop](#the-prop-decorator)
+- [@Watch](#the-watch-decorator)
+- [@Method](#the-method-decorator)
 
 ## The @Prop decorator
 
-`@Prop` is a bit of s misnomer. It's not only a `property` but it also represents, and can reflect an `attribute` on the tag of our component. This makes it a powerful way to interface with a consumer. They can declaratively pass down primitive types that can be parsed from a string.
+`@Prop` is a bit of s misnomer. It's not only a `property` but it also represents an `attribute` on the tag of our component. This makes it a powerful way to interface with a consumer. They can declaratively pass down primitive types that can be parsed from a string using the attribute, or handle more complex data using the property.
 
 ### Camel case to kebab case
 
@@ -174,7 +174,7 @@ export class MyCustomElement {
 }
 ```
 
-**NOTE:** As of version Stencil 1.3.3 they do not appear to be enforcing this! It's up to you as a developer to be disciplined in using this property appropriately. You will not get an error if you change a prop that is not marked `mutable: false`, which is the current default.
+**NOTE:** As of version Stencil 1.3.3 they do not appear to be enforcing this! It's up to you as a developer to be disciplined in using this property appropriately. You will not get an error if you change a prop that is marked `mutable: false`, which is the current default.
 
 ### Reflect
 
@@ -190,7 +190,7 @@ export class MyCustomElement {
   @Prop({
     reflect: true // Defaults to false
   }) aReflectedProp: string = 'I am reflected';
-  @Prop() unreflectedProp: string = 'I am not shown in the DOM';
+  @Prop() unreflectedProp: string = 'I am not updated in the DOM';
 }
 ```
 
@@ -206,7 +206,7 @@ If you read through my series on web components you'll know about the [attribute
 
 `@Watch` takes the name of the `@Prop` variable to watch as a parameter. Any time the value of that prop changes the function decorated by `@Watch` will be invoked with the 'newValue' and 'oldValue' as parameters. This is called first out of the lifecycle callbacks after a prop changes.
 
-The value of `@Watch` is that you can do property validation before any of the other lifecycle events fire. If someone provided an invalid value to the `@Prop`, then throwing an error and correcting can prevent any potential odd behavior.
+The value of `@Watch` is that you can do property validation before any of the other lifecycle events fire. If someone provided an invalid value to the `@Prop`, then throwing an error and correcting can prevent any potentially odd behavior.
 
 **NOTE:** `@Watch` is NOT invoked for the first render. It is only invoked for subsequent changes.
 
@@ -232,7 +232,7 @@ export class MyCustomElement {
 
 ## The @Method decorator
 
-This might sound odd, but don't use this if at all possible. Using publicly facing methods will be much more challenging for a consumer then a prop/attribute. They are available if you cannot find a way to work with a prop/attribute effectively.
+This might sound odd, but don't use this if at all possible. Using publicly facing methods will be much more challenging for a consumer then a prop/attribute. It also breaks traditional models for how frameworks will interact with your component. They are available if you cannot find a way to work with a prop/attribute effectively.
 
 Now let's talk about how they actually work!
 
