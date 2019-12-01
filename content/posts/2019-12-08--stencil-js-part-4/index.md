@@ -101,4 +101,82 @@ export class MyCustomElement {
 
 ## `@Listen` decorator
 
-Emitting events isn't helpful if we can't respond to them in a reasonable way. Stencil handles this via the `@Listen` decorator.
+Emitting events isn't helpful if we can't respond to them in a reasonable way. Stencil handles this via the `@Listen` decorator. This decorates a function that will handle the event. It takes two parameters, the event name and a set of options to set the behavior of the event handling.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Listen('theNameOfAnEvent')
+  function(event) {}
+}
+```
+
+### Target
+
+The first option for the `@Listen` decorator is `target`.  This option allows us to set where we will listen for the event. The options are:
+
+- parent - Good for keeping event response close to the emitter.
+- body - Good for capturing events fired by any element in the body.
+- document - Useful for document ready, and other document specific events.
+- window - Highest level, and helpful for things like window scroll events.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Listen('scoll', {
+    target: 'window'
+  })
+  function(scrollEvent) {}
+}
+```
+
+### Capture
+
+This option is about when during the event lifecycle the handler will be called. There's some nuance to the event lifecycle, so I'll leave that for those who would like some [additional reading](https://www.quirksmode.org/js/events_order.html#link4). The key part is that an event marked as `capture: true` will be fired before one that is marked `capture: false`.
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Listen('theNameOfAnEvent', {
+    capture: true
+  })
+  function(eventFiredFirst) {}
+
+  @Listen('theNameOfAnEvent', {
+    capture: false // The default
+  })
+  function(eventFiredSecond) {}
+}
+```
+
+### Passive
+
+This will guarantee to the DOM that the event being fired will not `.stopPropagation()`. This allows the DOM more knowledge of how to work with the event handler. If `.stopPropagation()` is called inside a function marked `passive` it will not have any effect and a warning will be thrown to the console.
+
+Quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @Listen('theNameOfAnEvent', {
+    passive: true // The default is false
+  })
+  function(eventTheWillNotBeStopped) {}
+}
+```
+
+## Wrapping up
+
+We've covered all of the important information needed to handle DOM events using Stencil. Between `@Event` and `@Listen` we can now emit all types of events, and handle them.
