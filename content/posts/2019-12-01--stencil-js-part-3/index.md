@@ -24,11 +24,11 @@ There are some misnomers and nuance to be aware of with each of the three decora
 
 ## The @Prop decorator
 
-`@Prop` is a bit of s misnomer. It's not only a `property` but it also represents an `attribute` on the tag of our component. This makes it a powerful way to interface with a consumer. They can declaratively pass down primitive types that can be parsed from a string using the attribute, or handle more complex data using the property.
+`@Prop` is a bit of a misnomer. It's not only a `property` but it also represents an `attribute` on the tag of our component. This makes it a powerful way to interface with a consumer. They can declaratively pass down primitive types that can be parsed from a string using the attribute, or handle more complex data using the property.
 
 ### Camel case to kebab case
 
-Stencil reflects `@Prop` class properties to the tag as kebab case translation of the camel case variable.
+Stencil reflects `@Prop` class properties to the tag as a kebab case translation of the camel case variable.
 
 As an example:
 
@@ -41,7 +41,7 @@ export class MyCustomElement {
 }
 ```
 
-Is use in HTML like this:
+Is used in HTML like this:
 
 ```html
 <my-custom-element an-example-prop="Something stringy"></my-custom-element>
@@ -95,8 +95,6 @@ The output of this is:
 When you need a non-primitive type to be passed in then your consumer will need to reference the tag directly and assign properties on that object directly. This can be done as the element is created, but before it is attached to the DOM.
 
 Here's an example of what that can look like:
-
-Stencil Component:
 
 ```tsx
 @Component({
@@ -194,7 +192,7 @@ export class MyCustomElement {
 }
 ```
 
-After component is loaded the DOM will reflect the `aReflectedProp` value.
+After the component is loaded the DOM will reflect the `aReflectedProp` value.
 
 ```html
 <my-custom-element a-reflected-prop="I am reflected"></my-custom-element>
@@ -204,7 +202,7 @@ After component is loaded the DOM will reflect the `aReflectedProp` value.
 
 If you read through my series on web components you'll know about the [attributeChangedCallback](https://terodox.tech/web-components-part-2#attributechangedcallback). The `@Watch` decorator is how Stencil exposes this functionality.
 
-`@Watch` takes the name of the `@Prop` variable to watch as a parameter. Any time the value of that prop changes the function decorated by `@Watch` will be invoked with the 'newValue' and 'oldValue' as parameters. This is called first out of the lifecycle callbacks after a prop changes.
+`@Watch` takes the name of the `@Prop` variable to monitor as a parameter. Any time the value of that prop changes the function decorated by `@Watch` will be invoked with the 'newValue' and 'oldValue' as parameters. This is called first out of the lifecycle callbacks after a prop changes.
 
 The value of `@Watch` is that you can do property validation before any of the other lifecycle events fire. If someone provided an invalid value to the `@Prop`, then throwing an error and correcting can prevent any potentially odd behavior.
 
