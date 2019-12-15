@@ -19,3 +19,21 @@ Many times when writing components we need to store some stateful information th
 The key concept with `@State` is that it should only be used on properties that will require a rerender if they change. You should avoid using this decorator for anything that does not require the render method to be called again.
 
 There are no options for this decorator.
+
+Here's a quick example:
+
+```tsx
+@Component({
+  tag: 'my-custom-element'
+})
+export class MyCustomElement {
+  @State() numberOfClicks: EventEmitter<number>;
+
+  render() {
+    return [
+      <div>{this.numberOfClicks}</div>
+      <button onClick={() => { this.numberOfClicks++; }}>Plus One</button>
+    ];
+  }
+}
+```
