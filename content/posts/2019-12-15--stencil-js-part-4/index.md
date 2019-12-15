@@ -140,7 +140,7 @@ export class MyCustomElement {
 
 ### Capture
 
-This option is about when during the event lifecycle the handler will be called. There's some nuance to the event lifecycle, so I'll leave that for those who would like some [additional reading](https://www.quirksmode.org/js/events_order.html#link4). The key part is that an event marked as `capture: true` will be fired before one that is marked `capture: false`.
+This option is about when during the event lifecycle the handler will be called. There's some nuance to the event lifecycle, so I'll leave that for those who would like some [additional reading](https://www.quirksmode.org/js/events_order.html#link4). The key part is that a listener marked as `capture: true` will be fired before one that is marked `capture: false`.
 
 ```tsx
 @Component({
