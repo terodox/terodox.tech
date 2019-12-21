@@ -16,7 +16,7 @@ It's also building on a [previous article](/stencil-js-part-1), so please check 
 
 Many times when writing components we need to store some stateful information that's only relevant to that component. Stencil handles this with the `@State` decorator for properties.
 
-The key concept with `@State` is that it should only be used on properties that will require a rerender if they change. You should avoid using this decorator for anything that does not require the render method to be called again.
+The key concept with `@State` is that it should only be used on properties that will require a re-render if they change. You should avoid using this decorator for anything that does not require the render method to be called again.
 
 There are no options for this decorator.
 
