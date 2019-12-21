@@ -1,5 +1,5 @@
 ---
-title: "StencilJs - Part 4 - @State Decorator"
+title: "StencilJs - Part 5 - @State Decorator"
 comments: true
 category: WebComponents
 cover: state.jpg
