@@ -27,7 +27,7 @@ Here's a quick example:
   tag: 'my-custom-element'
 })
 export class MyCustomElement {
-  @State() numberOfClicks: EventEmitter<number>;
+  @State() numberOfClicks: number;
 
   render() {
     return [
