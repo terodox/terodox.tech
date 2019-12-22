@@ -87,7 +87,7 @@ Check out this little bit of jsx:
 return
   { STATES.initialState ? '' :
     <div class="notification">
-      {
+      {(() => {
         switch(state.currentState) {
           case STATES.submitted:
             return <LoadingImage />;
@@ -96,7 +96,7 @@ return
           case STATES.error:
             return <ErrorMessage />;
         }
-      }
+      })()}
     </div>
   }
 ```
