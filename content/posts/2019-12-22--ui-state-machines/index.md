@@ -8,7 +8,7 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [twinsfisch](https://unsplash.com/@twinsfisch)
 
-Finite State Machines are a pattern that has been around for a long time. The basic idea is that a given component or set of components can only exist in a single state at a time. The state they exist in is based on events that can trigger the component to move between states. The most famous state machine for front-ends is probably [redux](https://www.npmjs.com/package/redux).
+[Finite State Machines](https://en.wikipedia.org/wiki/Finite-state_machine) are a pattern that has been around for a long time. The basic idea is that a given component or set of components can only exist in a single state at a time. The state they exist in is based on events that can trigger the component to move between states. The most famous state machine for front-ends is probably [redux](https://www.npmjs.com/package/redux).
 
 ## A simple example
 
