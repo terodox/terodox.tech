@@ -68,7 +68,7 @@ const state = {
 };
 
 changeState(newState) {
-  if(!STATE.isValid(newState)) {
+  if(!STATES.isValid(newState)) {
     throw new Error(`Unknown state provided. Provided value: ${newState}`);
   }
 
