@@ -14,9 +14,9 @@ It's also building on a [previous article](/stencil-js-part-1), so please check 
 
 ## Firing events
 
-Events are an important part of any web component that is going to take user feedback.  It's the components way to let consumers know that something has happened.
+Events are an important part of any web component that is going to take user feedback.  It's the component's way to let consumers know that something has happened.
 
-Luckily for us Stencil makes this incredibly easy. The `@Event` property allows us expose an `EventEmitter` that will publish events. The `@Event` decorator takes some options that can help us customize how the event will be published.
+Luckily for us Stencil makes this incredibly easy. The `@Event` property allows us to expose an `EventEmitter` that will publish events. The `@Event` decorator takes some options that can help us customize how the event will be published.
 
 The `EventEmitter` is a generic type allowing us to mark it with the data type that will be published. For example, if we want to publish a number in the event we would mark it like this: `EventEmitter<number>`
 
@@ -33,7 +33,7 @@ export class MyCustomElement {
 
 ### Event name
 
-By default the event will be named the same as the variable name. In the example above the event would be named `numberOfClicks`. This is not always desirable, and because of this we have the `eventName` option that can be provided to the `@Event` decorator. It does exactly what it says, sets the name of the published event.
+By default the event will be named the same as the variable name. In the example above the event would be named `numberOfClicks`. This is not always desirable, and because of this we have the `eventName` option that can be provided to the `@Event` decorator. It does exactly what it says; sets the name of the published event.
 
 Quick example:
 
@@ -67,7 +67,7 @@ export class MyCustomElement {
 
 ### Cancelable
 
-This property is designed to allow events to be cancelled. This really translated to whether or not you can use `event.preventDefault()` or not. More reading [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable) if you're interested.
+This property is designed to allow events to be cancelled. This really translates to whether or not you can use `event.preventDefault()` or not. More reading [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable) if you're interested.
 
 Quick example:
 

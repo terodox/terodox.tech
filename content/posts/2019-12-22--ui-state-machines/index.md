@@ -49,7 +49,7 @@ return
 
 We need to evaluate every flag property in order to render any of them. This works for today, but what happens when we introduce new states like 'invalid input' and 'bad password'? We suddenly have to update every possibility with these new flags to guarantee none of them can be displayed together!
 
-A simpler approach would be to have a single variable for state, and only allows swtiching between well known states!
+A simpler approach would be to have a single variable for state, and only allows switching between well known states!
 
 Here's what that could look like:
 
