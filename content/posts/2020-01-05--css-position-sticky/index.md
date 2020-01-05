@@ -53,7 +53,7 @@ Footers have never been easier to create!
 
 These apply the exact same way as header and footer, just set `left: 0` or `right: 0`. Then with a horizontally scrolling section you can have sections stick to the left or right!
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="Sticky Left and Right" src="https://codepen.io/terodox/embed/abzVXgG?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="352" style="width: 100%;" scrolling="no" title="Sticky Left and Right" src="https://codepen.io/terodox/embed/preview/abzVXgG?height=352&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/terodox/pen/abzVXgG'>Sticky Left and Right</a> by Andy Desmarais
   (<a href='https://codepen.io/terodox'>@terodox</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
