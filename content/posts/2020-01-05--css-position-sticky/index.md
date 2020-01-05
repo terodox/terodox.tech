@@ -18,7 +18,7 @@ Basically, an element with `position: sticky` is treated like `position: relativ
 
 Here's a quick example:
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Basic Position Sticky" src="https://codepen.io/terodox/embed/preview/BaymMVB?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="350" style="width: 100%;" scrolling="no" title="Basic Position Sticky" src="https://codepen.io/terodox/embed/preview/BaymMVB?height=350&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/terodox/pen/BaymMVB'>Basic Position Sticky</a> by Andy Desmarais
   (<a href='https://codepen.io/terodox'>@terodox</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -31,7 +31,7 @@ Just setting `position: sticky` and `top: 0` create the behavior you're seeing. 
 
 Let's look at another example, a contact list. We want the current first letter of the names we are looking at to be pinned to the top. This might seem more tricky, but it's actually very similar. It turns out that you can have multiple elements set to be sticky and they will naturally supersede one another! The same two properties solve this problem as well!
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Stacked Position Sticky" src="https://codepen.io/terodox/embed/preview/WNbXPar?height=353&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="350" style="width: 100%;" scrolling="no" title="Stacked Position Sticky" src="https://codepen.io/terodox/embed/preview/WNbXPar?height=350&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/terodox/pen/WNbXPar'>Stacked Position Sticky</a> by Andy Desmarais
   (<a href='https://codepen.io/terodox'>@terodox</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -42,7 +42,7 @@ This can come in handy for other use cases like section headers.
 
 This works well for headers, but what about a footer? This one is just as simple as the first two, swap out setting `top: 0` for 'bottom: 0` and you're good to go!
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Sticky Footer" src="https://codepen.io/terodox/embed/preview/xxbPMez?height=347&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="350" style="width: 100%;" scrolling="no" title="Sticky Footer" src="https://codepen.io/terodox/embed/preview/xxbPMez?height=350&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/terodox/pen/xxbPMez'>Sticky Footer</a> by Andy Desmarais
   (<a href='https://codepen.io/terodox'>@terodox</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -53,7 +53,7 @@ Footers have never been easier to create!
 
 These apply the exact same way as header and footer, just set `left: 0` or `right: 0`. Then with a horizontally scrolling section you can have sections stick to the left or right!
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="Sticky Left and Right" src="https://codepen.io/terodox/embed/preview/abzVXgG?height=352&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="350" style="width: 100%;" scrolling="no" title="Sticky Left and Right" src="https://codepen.io/terodox/embed/preview/abzVXgG?height=350&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/terodox/pen/abzVXgG'>Sticky Left and Right</a> by Andy Desmarais
   (<a href='https://codepen.io/terodox'>@terodox</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
