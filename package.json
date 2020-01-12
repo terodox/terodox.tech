@@ -106,7 +106,7 @@
     "serve": "11.3.0",
     "sharp-cli": "1.13.1",
     "stylelint": "13.0.0",
-    "stylelint-config-css-modules": "2.1.0",
+    "stylelint-config-css-modules": "2.2.0",
     "stylelint-config-standard": "19.0.0",
     "url-loader": "3.0.0",
     "webpack-bundle-analyzer": "3.6.0"
