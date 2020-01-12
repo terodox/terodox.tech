@@ -1,5 +1,5 @@
 ---
-title: "Handling Web Component markup with Lit HTML"
+title: "lit-html Part 1 - A solution for DOM management in web components"
 comments: true
 category: WebComponents
 cover: template.jpg
@@ -18,19 +18,21 @@ This is the pain that drove me to explore tooling for handling html updates in w
 
 Ok, so what the heck IS lit-html?
 
-> "lit-html lets you write HTML templates in JavaScript using template literals with embedded JavaScript expressions. lit-html identifies the static and dynamic parts of your templates so it can efficiently update just the changed portions." - from the [lit-html site](https://lit-html.polymer-project.org/guide)
+> *"lit-html lets you write HTML templates in JavaScript using template literals with embedded JavaScript expressions. lit-html identifies the static and dynamic parts of your templates so it can efficiently update just the changed portions."* - from the [lit-html site](https://lit-html.polymer-project.org/guide)
 
-This means that we can write templates similar to Angular and React, and get the benefits of only changing the parts of the DOM affected by a re-render.
+This means that we can write templates similar to Angular and React getting the benefits of only changing the parts of the DOM affected by a re-render.
 
 Unlike Angular and React, we are deeply in control of WHEN we re-render. This has both pros and cons, but it's definitely something to keep in mind as we dive deeper.
 
 ## Templates vs TemplateResults vs Rendering
 
-Lit-html functions in three basic steps.  The first is to define a Template or TemplateFunction.  This is the markup we want rendered to the DOM with some variables in place, or being passed into the function. This is similar to Angular templates or JSX in React.
+Lit-html functions in two basic steps.  The first is to define a Template or TemplateFunction. This is the markup we want rendered to the DOM with some variables in place, or being passed into the function. This is similar to Angular templates or JSX in React.
+
+The second is to then render that TemplateResult to the DOM using the `render` function.
 
 ## Templates and Template Functions
 
-Templates are based on string literals using the backtick (`) character. The templates are then prefixed with lit-html's html tag. Tagged template literals are widely supported in modern browsers, but Edge is lagging behind. This can be overcome using babel (more on that later).
+Templates are based on string literals using the backtick (`` ` ``) character. The templates are then prefixed with lit-html's `html` string literal tag. Tagged template literals are widely supported in modern browsers, but Edge is lagging behind. This can be overcome using babel [check out the docs for more information](https://lit-html.polymer-project.org/guide/tools).
 
 Here's an example of a simple template:
 
@@ -38,7 +40,7 @@ Here's an example of a simple template:
 import { html } from 'lit-html';
 
 const name = 'Andy';
-const templateResult = html`Hello ${name}`;
+const templateResult = html`<h1>Hello ${name}</h1>`;
 ```
 
 Templates can also be written as functions. This allows them to be more composable and portable. Template functions are a nice way of encapsulating the functionality for rendering into a single call.
@@ -49,15 +51,15 @@ Here's the equivalent template written as a template function:
 import { html } from 'lit-html';
 
 const name = 'Andy';
-const templateFunction = (name) => html`Hello ${name}`;
+const templateFunction = (name) => html`<h1>Hello ${name}</h1>`;
 const templateResult = templateFunction(name);
 ```
 
 ## TemplateResult
 
-A template result is what is returned from the tagged string literal. This is a combination of the template to render as well as the data needed to render it. They are VERY cheap to create and no real work happens until we call the render function.
+A template result is the return value from the tagged string literal. This is a combination of the template to render as well as the data needed to render it. They are VERY cheap to create and no real work happens until we call the render function.
 
-This means we can have a lot of different templates come together quickly to create a single template result without having a lot of load put on the browser.
+This means we can have a lot of different templates come together quickly to create a single TemplateResult without having a lot of load put on the browser.
 
 ## Rendering
 
