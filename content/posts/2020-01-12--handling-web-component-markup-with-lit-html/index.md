@@ -8,9 +8,9 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Tim Arterbury](https://unsplash.com/@tim_arterbury)
 
-The power of web components is that we don't have to rely on a framework. We can avoid framework fatigue from constant changes and updates. This has been a cornerstone to why I personally go as native as possible with web components as possible. However, as with all things, there is a time and a place to introduce tooling.
+The power of web components is that we don't have to rely on a framework. We can avoid framework fatigue from constant changes and updates. This has been a cornerstone to why I personally go as native with web components as possible. However, as with all things, there is a time and a place to introduce tooling.
 
-The best example I can give for this is managing the display of a user selectable set of items. Managing the state of the DOM as the user is adding, removing, updating items can be a very involved task. Especially if we are trying to avoid removing/adding elements as much as possible.
+The best example I can give for this is managing the display of a user selectable set of items. Managing the state of the DOM as the user is adding, removing, and updating items can be a very involved task. Especially if we are trying to avoid removing/adding elements as much as possible.
 
 This is the pain that drove me to explore tooling for handling html updates in web components. I came across [lit-html](https://lit-html.polymer-project.org/guide) while trying to find a solution for better handling DOM diffing that didn't involve having to keep track of every element myself. For 17 kb gzipped I now have all of the power a traditional framework would provide me, while limiting it's scope of influence purely to my markup!
 
@@ -26,9 +26,10 @@ Unlike Angular and React, we are deeply in control of WHEN we re-render. This ha
 
 ## Templates vs TemplateResults vs Rendering
 
-Lit-html functions in two basic steps.  The first is to define a Template or TemplateFunction. This is the markup we want rendered to the DOM with some variables in place, or being passed into the function. This is similar to Angular templates or JSX in React.
+Lit-html functions in two basic steps:
 
-The second is to then render that TemplateResult to the DOM using the `render` function.
+- The first is to define a Template or TemplateFunction. This is the markup we want rendered to the DOM with some variables in place, or being passed into the function. This is similar to Angular templates or JSX in React.
+- The second is to then render that TemplateResult to the DOM using the `render` function.
 
 ## Templates and Template Functions
 
@@ -65,7 +66,7 @@ This means we can have a lot of different templates come together quickly to cre
 
 This is the work horse of lit-html. The render function takes the TemplateResult and performs the work of rendering everything that has changed to the DOM. This makes the process of updating markup to match state changes trivial.
 
-The actual function take two parameters: the TemplateResult and the DOM element to render into.
+The actual function takes two parameters: the TemplateResult and the DOM element to render into.
 
 Here's a simple example:
 
