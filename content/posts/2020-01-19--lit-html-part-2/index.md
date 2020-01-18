@@ -1,5 +1,5 @@
 ---
-title: "lit-html Part 2 - Working with properties and attributes"
+title: "lit-html Part 2 - Working with attributes and properties"
 comments: true
 category: WebComponents
 cover: books.jpg
@@ -61,3 +61,19 @@ Pass in false:
 Now we can handle all values that convert to either strings or booleans, but what about complex types that can't be handled by an attribute? That's where we need to start using properties.
 
 ## Properties
+
+Let's say we need to pass an array of objects to an element. We could stringify the array and pass it as an attribute, but that's less than ideal. Instead we could bind directly to a property on the object. lit-html allows us to do this using a `.` as a prefix to the property.
+
+```javascript
+const { html } from 'lit-html';
+
+const simpleArray = [ 1, 2, 3 ];
+
+const templateFunction = html`<custom-array-display .arrayToDisplay=${simpleArray}></custom-array-display>`;
+```
+
+This will create the `custom-array-display` then set the `arrayToDisplay` property on it to `simpleArray`. This gives us the power to do bindings similar to what Angular and React allow when binding props.
+
+## Wrapping up
+
+Binding to both attributes and properties is critical when developing a modern web application. lit-html has all od the facilities needed to accomplish this while managing the state of your DOM in a reasonable way.
