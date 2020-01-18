@@ -78,6 +78,37 @@ Let's stay focused on the lit-html part. We're binding a fat arrow function to t
 
 The `bind` method allows us to force a specific `this` context onto a function.
 
+Let's see what that looks like:
+
+```javascript
+import { html, render } from 'lit-html';
+
+class AlertButton extends {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.clickCount = 0;
+  }
+
+  connectedCallback() {
+    this.template = ({clickCount}) => html`<button @click=${this._handleClick.bind(this)}`;
+  }
+
+  _handleClick(event) {
+    this._clickCount++;
+    this.render();
+  }
+
+  render() {
+    render(this.template(this), this.shadowRoot);
+  }
+}
+```
+
 ### Pros and Cons
 
+The fat arrow syntax is simple to use and understand, but it comes at the cost of an additional function execution every time an event fires. This might not be a big deal for things like `click`, but can be a much bigger deal for things like `scroll` which can fire a lot of events very quickly. For this reason, I tend to default to using `bind` because it doesn't have the potential performance issues.
 
+## Wrapping up
+
+Binding to events is essential for the modern web, and lit-html has done a great job making them trivial to work with.
