@@ -76,4 +76,4 @@ This will create the `custom-array-display` then set the `arrayToDisplay` proper
 
 ## Wrapping up
 
-Binding to both attributes and properties is critical when developing a modern web application. lit-html has all od the facilities needed to accomplish this while managing the state of your DOM in a reasonable way.
+Binding to both attributes and properties is critical when developing a modern web application. lit-html has all of the facilities needed to accomplish this while managing the state of your DOM in a reasonable way.
