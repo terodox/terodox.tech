@@ -76,7 +76,7 @@ Let's stay focused on the lit-html part. We're binding a fat arrow function to t
 
 ### Using `.bind()`
 
-The `bind` method allows us to force a specific `this` context onto a function.
+The `bind` method allows us to force a specific `this` context onto a function. This means that any reference to that function will still maintain its `this` context appropriately.
 
 Let's see what that looks like:
 
