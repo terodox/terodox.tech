@@ -10,9 +10,9 @@ author: Andy Desmarais
 
 [In a previous post](/handling-web-component-markup-with-lit-html/) I covered the basics of lit-html. If you haven't read it yet, some of this post will probably not make sense.
 
-Event listeners are an important part of the way we  build components for the modern web. When an input changes, or a user changes the state of a component, and event is the way we let parent components know there's an action to take.
+Event listeners are an important part of the way we  build components for the modern web. When an input changes, or a user changes the state of a component, an event is the way we let parent components know there's an action to take.
 
-lit-html provides a simple syntax to help us handle adding, and removing, event listeners to a component. The syntax is straight forward. Just add a `@` then the event name you are listening for at an attribute of the component. Then use the lit-html style binding syntax to associate a function to fire when the event is emitted.
+lit-html provides a simple syntax to help us handle adding, and removing, event listeners to a component. The syntax is straight forward. Just add a `@` then the event name you are listening for as an attribute of the tag. Then use the lit-html style binding syntax to associate a function to fire when the event is emitted.
 
 Let's check out an example:
 
@@ -32,7 +32,7 @@ This works exactly as you would expect. When a user clicks the button, the `hand
 
 ## `this` context in an event
 
-The usual rules apply here for maintaining the appropriate `this` context. If you are going to reference a method from a class (eg Web Component)you have two options:
+The usual rules apply here for maintaining the appropriate `this` context. If you are going to reference a method from a class (eg Web Component) you have two options:
 
 1. Use a fat arrow function (() => {})
 2. Bind the function to the appropriate `this`
