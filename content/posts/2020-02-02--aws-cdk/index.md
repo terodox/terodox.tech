@@ -2,7 +2,7 @@
 title: "Introduction to the AWS Cloud Development Kit (CDK)"
 comments: true
 category: AWS
-cover: books.jpg
+cover: infrastructure.jpg
 author: Andy Desmarais
 ---
 
