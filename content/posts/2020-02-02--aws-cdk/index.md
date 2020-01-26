@@ -92,4 +92,77 @@ Now that we have our stack we can start adding resources to it. Let's start with
 
 The basic building blocks we're going to create will be an API Gateway with a Lambda Function defined as its handler.
 
-With the CDK we can define the lambda function in the same project as the 
+Let's start with the lambda function. Inside the constructor of our `MyFirstCdkAppStack`. We'll need to install the dependencies that allow us to create lambda functions.
+
+```bash
+npm i --save-dev @aws-cdk/aws-lambda
+```
+
+This is a good time to mention how all of the CDK packages are organized. The [`@aws-cdk`](https://www.npmjs.com/search?q=%40aws-cdk) namespace will have all of the different modules you'll need to compile any resource currently supported by the CDK.
+
+With the CDK we can define the lambda function in the same project as the infrastructure. This helps ensure out infrastructure and code are in sync with one another.
+
+The recommended approach is to put the files for your lambda into a `resources` folder. This will be the location we reference from our CDK script.
+
+Let's create a quick hello world:
+
+```javascript
+// FILE: resources/hello.js
+exports.handler = async function(event, context) {
+    return {
+      statusCode: 200,
+      headers: {},
+      body: JSON.stringify({
+        message: 'Hello World!'
+      });
+    };
+}
+```
+
+This is an extremely over simplified example. We'll get into more advanced use cases in a bit.
+
+Now that have a handler for our lambda let's define it in the `MyFirstCdkAppStack` constructor:
+
+```javascript
+const cdk = require('@aws-cdk/core');
+const lambda = require("@aws-cdk/aws-lambda");
+
+class MyFirstCdkAppStack extends cdk.Stack {
+  /** JSDoc removed for brevity */
+  constructor(scope, id, props) {
+    super(scope, id, props);
+
+    new lambda.Function(this, "WidgetHandler", {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: lambda.Code.asset("resources"),
+      handler: "hello.handler",
+    });
+  }
+}
+
+module.exports = { MyFirstCdkAppStack };
+```
+
+If you are familiar with the CloudFormation definition of a lambda this will look pretty familiar. This will automatically bring in the code in the resources directory as the code for the lambda. Then we tell it the handler using `[FILE_NAME].[EXPORT_NAME]`. This is an extremely simplified example. You can add other properties to be more specific in your setup.
+
+Other properties include (but are not limited to):
+
+- deadLetterQueue - The dead letter queue for execution failures
+- deadLetterQueueEnabled
+- functionName
+- initialPolicy - An array of PolicyStatement for the created lambda role
+- logRetention - The number of days logs for the lambda should be retained
+- memorySize
+- reservedConcurrentExecutions - The maximum of concurrent executions you want to reserve for the function
+- roles - The role that will be assumed by the function during execution
+- timeout
+- tracing - Enable X-Ray tracing
+- vpc
+
+There's a lot that can be configured on a lambda, and this is definitely NOT an exhaustive list.
+
+## Adding in API Gateway
+
+We have a lambda to say hello to everyone, but we need a way to expose it to the world. Let's create an API gateway.
+
+
