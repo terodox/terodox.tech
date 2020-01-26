@@ -165,4 +165,8 @@ There's a lot that can be configured on a lambda, and this is definitely NOT an 
 
 We have a lambda to say hello to everyone, but we need a way to expose it to the world. Let's create an API gateway.
 
+Just like with lambda we'll need to start by installing the api gateway node dependency:
 
+```bash
+
+```
