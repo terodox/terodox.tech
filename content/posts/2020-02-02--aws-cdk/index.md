@@ -143,7 +143,9 @@ class MyFirstCdkAppStack extends cdk.Stack {
 module.exports = { MyFirstCdkAppStack };
 ```
 
-If you are familiar with the CloudFormation definition of a lambda this will look pretty familiar. This will automatically bring in the code in the resources directory as the code for the lambda. Then we tell it the handler using `[FILE_NAME].[EXPORT_NAME]`. This is an extremely simplified example. You can add other properties to be more specific in your setup.
+I want to point out that we don't have to keep a reference to the lambda we've just created. This is because we are passing `this` into the functions constructor which give the stack all of the reference it needs to keep track of the function. This goes against what we traditionally need to do in javascript, so it's important to know.
+
+If you are familiar with the CloudFormation definition of a lambda this example will look pretty familiar. This will automatically bring in the code from the resources directory as the code for the lambda. Then we tell it how to locate the handler using `[FILE_NAME].[EXPORT_NAME]`. This is an extremely simplified example. You can add other properties to be more specific in your setup.
 
 Other properties include (but are not limited to):
 
@@ -152,12 +154,11 @@ Other properties include (but are not limited to):
 - functionName
 - initialPolicy - An array of PolicyStatement for the created lambda role
 - logRetention - The number of days logs for the lambda should be retained
-- memorySize
+- memorySize - The amount of memory to be allocated to the lambda (See [docs](https://docs.aws.amazon.com/lambda/latest/dg/limits.html) for more info)
 - reservedConcurrentExecutions - The maximum of concurrent executions you want to reserve for the function
 - roles - The role that will be assumed by the function during execution
-- timeout
+- timeout - The maximum run time of the lambda in seconds
 - tracing - Enable X-Ray tracing
-- vpc
 
 There's a lot that can be configured on a lambda, and this is definitely NOT an exhaustive list.
 
@@ -168,5 +169,72 @@ We have a lambda to say hello to everyone, but we need a way to expose it to the
 Just like with lambda we'll need to start by installing the api gateway node dependency:
 
 ```bash
-
+npm i --save-dev @aws-cdk/aws-apigateway"
 ```
+
+Now that we have the classes we need installed, let's create an api gateway that will use our lambda as a handler.
+
+```javascript
+const cdk = require('@aws-cdk/core');
+const apigateway = require("@aws-cdk/aws-apigateway");
+const lambda = require("@aws-cdk/aws-lambda");
+
+class MyFirstCdkAppStack extends cdk.Stack {
+  /** JSDoc removed for brevity */
+  constructor(scope, id, props) {
+    super(scope, id, props);
+
+    const lambdaFunction = new lambda.Function(this, "HelloHandler", {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: lambda.Code.asset("resources"),
+      handler: "hello.handler",
+    });
+
+    const api = new apigateway.RestApi(this, "hello-api", {
+      restApiName: "Hello World Service",
+      description: "This service says hello world"
+    });
+
+    const lambdaIntegration = new apigateway.LambdaIntegration(lambdaFunction, {
+      requestTemplates: { "application/json": '{ "statusCode": "200" }' }
+    });
+
+    api.root.addMethod("GET", lambdaIntegration); // GET /
+  }
+}
+
+module.exports = { MyFirstCdkAppStack };
+```
+
+Unlike in the previous example we need to maintain a reference to the lambda in order to set and api gateway integration properly. The CDK uses references as inputs to other classes as a way to convey all the needed references for CloudFormation to function properly.
+
+Api gateway is a much more complex resource than lambda, and because of this it takes more moving parts to get it completely wired. We first create the api gateway with a name and description (These are only used for the console and reporting purposes). The we have top create the lambda integration which will allow api gateway to wire our lambda to respond to requests. Last we wire the lambda integration to the `GET` method at the root route (the `/` route).
+
+And with that we have a stack we can deploy!
+
+## Synthesizing
+
+Before we deploy the stack it's a good idea to make sure the CloudFormation it's producing is what we want. We can do this by running the cdk command:
+
+```bash
+npm run cdk synth
+```
+
+The will output all of the CloudFormation the CDK generates to the console. Then we can do a quick review to make sure we're getting everything we were expecting.
+
+## Deploying
+
+Once we're confident we're getting the resources we're expecting, we can deploy with a single CDK command as well!
+
+```bash
+npm run cdk deploy
+```
+
+This will first spit out a table based diff to show us what will actually be created. This is a good time to validate our checks from the synth step. The CDK will pause and wait for us to confirm that we're happy with all of the resources being created.
+
+Once we confirm, it will create a CloudFormation stack with the name designated in `
+new MyFirstCdkAppStack(app, 'MyFirstCdkAppStack');`. In this case it will be `MyFirstCdkAppStack`.
+
+## Wrapping up
+
+This was just a first glimpse into the capabilities of the AWS CDK. You can create almost any resource AWS has to offer. The power here will come from the ability to re-use and encapsulate code using design paradigms we're already familiar with in our own language of choice.
