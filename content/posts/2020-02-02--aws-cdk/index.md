@@ -10,14 +10,6 @@ author: Andy Desmarais
 
 Before we get started, this post is not meant to be an introduction to AWS infrastructure in general. It has the assumption that you are familiar with the basics of AWS.
 
-## Origin story
-
-This post originated from the large amount of traffic I got on a post to twitter:
-
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;ve been working a lot with the AWS CDK recently. I was a cloudformation lover before, but I&#39;m a definite convert to the CDK. The best thing about it at the end of the day (for me) is that I can just write javscript! <a href="https://twitter.com/hashtag/aws?src=hash&amp;ref_src=twsrc%5Etfw">#aws</a> <a href="https://twitter.com/hashtag/cdk?src=hash&amp;ref_src=twsrc%5Etfw">#cdk</a> <a href="https://twitter.com/hashtag/webdev?src=hash&amp;ref_src=twsrc%5Etfw">#webdev</a> <a href="https://twitter.com/hashtag/devops?src=hash&amp;ref_src=twsrc%5Etfw">#devops</a> <a href="https://twitter.com/hashtag/javascript?src=hash&amp;ref_src=twsrc%5Etfw">#javascript</a> <a href="https://twitter.com/hashtag/Cloud?src=hash&amp;ref_src=twsrc%5Etfw">#Cloud</a> <a href="https://twitter.com/hashtag/webdevelopment?src=hash&amp;ref_src=twsrc%5Etfw">#webdevelopment</a></p>&mdash; Andy Desmarais (@terodox) <a href="https://twitter.com/terodox/status/1219967955573903361?ref_src=twsrc%5Etfw">January 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-With all of that attention, I felt like it was definitely time to do a post introducing the CDK. With that let's dive in!
-
 ## What the heck is a CDK?
 
 The [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is an open source development framework designed to help you provision AWS resources using familiar programming languages.
