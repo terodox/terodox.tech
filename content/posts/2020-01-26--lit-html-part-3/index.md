@@ -32,7 +32,7 @@ This works exactly as you would expect. When a user clicks the button, the `hand
 
 ## `this` context in an event
 
-The `this` context for an event handler can be set by using the `eventContext` options passed as a third parameter to the render function. This allows you to directly control the `this` context that the event handler will have when it is invoked. This is similar to using `handler.bind(this)`.
+The `this` context for an event handler can be set by using the `eventContext` property of the options object passed as a third parameter to the render function. This allows you to directly control the `this` context that the event handler will have when it is invoked. This is similar to using `handleClick.bind(this)`.
 
 Quick example:
 
@@ -54,7 +54,7 @@ export function renderButtonToBody() {
 
 ## Event listener options
 
-If you need to take advantage of other options available to you with the `addEventListener` method, you can use an object to define the event listener instead. This will allow using options like `capture`.
+If you need to take advantage of other options available to you with the `addEventListener` method, you can use an object to define the event listener instead. This will allow using options like `capture`, `once`, and `passive`. Check out [MDN for more info](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on those.
 
 Here's how that could look:
 
