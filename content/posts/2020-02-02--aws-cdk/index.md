@@ -169,7 +169,7 @@ We have a lambda to say hello to everyone, but we need a way to expose it to the
 Just like with lambda, we'll need to start by installing the api gateway node dependency:
 
 ```bash
-npm i --save-dev @aws-cdk/aws-apigateway"
+npm i --save-dev @aws-cdk/aws-apigateway
 ```
 
 Now that we have the classes we need installed, let's create an api gateway that will use our lambda as a handler.
