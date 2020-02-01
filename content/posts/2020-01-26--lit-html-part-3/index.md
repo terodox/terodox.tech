@@ -32,82 +32,51 @@ This works exactly as you would expect. When a user clicks the button, the `hand
 
 ## `this` context in an event
 
-The usual rules apply here for maintaining the appropriate `this` context. If you are going to reference a method from a class (eg Web Component) you have two options:
+The `this` context for an event handler can be set by using the `eventContext` property of the options object passed as a third parameter to the render function. This allows you to directly control the `this` context that the event handler will have when it is invoked. This is similar to using `handleClick.bind(this)`.
 
-1. Use a fat arrow function (() => {})
-2. Bind the function to the appropriate `this`
-
-If you are unfamiliar with web components, check out [my series on them](/web-components-part-1/).
-
-### Using a fat arrow function
-
-Fat arrow functions maintain their `this` context from wherever they are created. This makes them an easy way to handle event `this` context maintenance.
-
-Here's what that looks like:
+Quick example:
 
 ```javascript
 import { html, render } from 'lit-html';
 
-class AlertButton extends {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.clickCount = 0;
+export function renderButtonToBody() {
+  const scopedValue = 'Nintendo Super Scoped';
+
+  function handleClick() {
+    alert(scopedValue);
   }
 
-  connectedCallback() {
-    this.template = ({clickCount}) => html`<button @click=${(event) => this._handleClick(event)}`;
-  }
+  const template = html`<button @click=${handleClick}>Click Me!<button>`;
 
-  _handleClick(event) {
-    this._clickCount++;
-    this.render();
-  }
-
-  render() {
-    render(this.template(this), this.shadowRoot);
-  }
+  render(template, document.body, { eventContext: this });
 }
 ```
 
-There's a lot going on here, but most of it is covered either in the [a lit-html](/handling-web-component-markup-with-lit-html/) post or [a web components post](/web-components-part-1/).
+## Event listener options
 
-Let's stay focused on the lit-html part. We're binding a fat arrow function to the `click` event listener that will maintain the `this` context for our method. This means we will be able to properly increment the `clickCount` and then fire `render()`.
+If you need to take advantage of other options available to you with the `addEventListener` method, you can use an object to define the event listener instead. This will allow using options like `capture`, `once`, and `passive`. Check out [MDN for more info](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on those.
 
-### Using `.bind()`
+Here's how that could look:
 
-The `bind` method allows us to force a specific `this` context onto a function. This means that any reference to that function will still maintain its `this` context appropriately.
-
-Let's see what that looks like:
 
 ```javascript
 import { html, render } from 'lit-html';
 
-class AlertButton extends {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.clickCount = 0;
-  }
+const clickHandler = {
+  handleEvent(e) {
+    alert('Yay for clicking the button!');
+  },
+  capture: true,
+};
 
-  connectedCallback() {
-    this.template = ({clickCount}) => html`<button @click=${this._handleClick.bind(this)}`;
-  }
+const template = html`<button @click=${clickHandler}>Click Me!<button>`;
 
-  _handleClick(event) {
-    this._clickCount++;
-    this.render();
-  }
-
-  render() {
-    render(this.template(this), this.shadowRoot);
-  }
-}
+render(template, document.body);
 ```
 
-### Pros and Cons
+The `handleEvent` method is required. The other options can then be added as sibling properties to the `handleEvent` function.
 
-The fat arrow syntax is simple to use and understand, but it comes at the cost of an additional function execution every time an event fires. This might not be a big deal for things like `click`, but can be a much bigger deal for things like `scroll` which can fire a lot of events very quickly. For this reason, I tend to default to using `bind` because it doesn't have the potential performance issues.
+The `handleEvent` will get a `this` context of the `clickHandler` object.
 
 ## Wrapping up
 
