@@ -16,7 +16,7 @@ The [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is an open source d
 
 Ummmmm... What?
 
-Right, so it's basically a set of tools that are designed to describe a [CloudFormation Stack](https://aws.amazon.com/cloudformation/). The stack can then be deployed, updated, and destroyed using the cdk cli.
+Right, so it's basically a set of tools that are designed to describe a [CloudFormation Stack](https://aws.amazon.com/cloudformation/). The stack can then be deployed, updated, and destroyed using the CDK cli.
 
 I can hear you out there thinking about serverless.io, terraform, and other infrastructure as code solutions. The main differentiator with the AWS CDK is that it's designed with your language in mind. The challenge with serverless.io, terraform, etc is you have to learn a new syntax in order to get anything done. This increases the learning curve for picking up new tooling.
 
@@ -40,7 +40,7 @@ cd my-first-cdk-app
 npx aws-cdk init --language javascript
 ```
 
-This set of commands with create a new directory for our project, move us into the directory, and initialize a CDK project including all of the necessary files and dependencies needed to get running.
+This set of commands will create a new directory for our project, move us into the directory, and initialize a CDK project including all of the necessary files and dependencies needed to get running.
 
 You'll see a set of commands output for using the CDK cli, but we'll come back to those in a bit.
 
@@ -48,7 +48,7 @@ You'll see a set of commands output for using the CDK cli, but we'll come back t
 
 Because the CDK is just spitting out CloudFormation, we have to start with defining a CloudFormation Stack. The stack will be the container that holds all of the AWS resources we want to create.
 
-The `init` command set up two files: `bin/my-first-cdk-app.js` and `lib/my-first-cdk-app-stack.js`. The file in the `bin` directory is the entry point the CDK will use when running. It's not magic though, there is a `cdk.json` file in the root that identifies the app you are going to be working with.
+The `init` command sets up two files: `bin/my-first-cdk-app.js` and `lib/my-first-cdk-app-stack.js`. The file in the `bin` directory is the entry point the CDK will use when running. It's not magic though, there is a `cdk.json` file in the root that identifies the app you are going to be working with.
 
 Let's look at `bin/my-first-cdk-app.js` first:
 
@@ -92,7 +92,7 @@ Now that we have our stack we can start adding resources to it. Let's start with
 
 The basic building blocks we're going to create will be an API Gateway with a Lambda Function defined as its handler.
 
-Let's start with the lambda function. Inside the constructor of our `MyFirstCdkAppStack`. We'll need to install the dependencies that allow us to create lambda functions.
+Let's start with the lambda function inside the constructor of our `MyFirstCdkAppStack`. We'll need to install the dependencies that allow us to create lambda functions.
 
 ```bash
 npm i --save-dev @aws-cdk/aws-lambda
@@ -100,7 +100,7 @@ npm i --save-dev @aws-cdk/aws-lambda
 
 This is a good time to mention how all of the CDK packages are organized. The [`@aws-cdk`](https://www.npmjs.com/search?q=%40aws-cdk) namespace will have all of the different modules you'll need to compile any resource currently supported by the CDK.
 
-With the CDK we can define the lambda function in the same project as the infrastructure. This helps ensure out infrastructure and code are in sync with one another.
+With the CDK we can define the lambda function in the same project as the infrastructure. This helps ensure our infrastructure and code are in sync with one another.
 
 The recommended approach is to put the files for your lambda into a `resources` folder. This will be the location we reference from our CDK script.
 
@@ -121,7 +121,7 @@ exports.handler = async function(event, context) {
 
 This is an extremely over simplified example. We'll get into more advanced use cases in a bit.
 
-Now that have a handler for our lambda let's define it in the `MyFirstCdkAppStack` constructor:
+Now that we have a handler for our lambda let's define it in the `MyFirstCdkAppStack` constructor:
 
 ```javascript
 const cdk = require('@aws-cdk/core');
@@ -166,7 +166,7 @@ There's a lot that can be configured on a lambda, and this is definitely NOT an 
 
 We have a lambda to say hello to everyone, but we need a way to expose it to the world. Let's create an API gateway.
 
-Just like with lambda we'll need to start by installing the api gateway node dependency:
+Just like with lambda, we'll need to start by installing the api gateway node dependency:
 
 ```bash
 npm i --save-dev @aws-cdk/aws-apigateway"
@@ -206,9 +206,9 @@ class MyFirstCdkAppStack extends cdk.Stack {
 module.exports = { MyFirstCdkAppStack };
 ```
 
-Unlike in the previous example we need to maintain a reference to the lambda in order to set and api gateway integration properly. The CDK uses references as inputs to other classes as a way to convey all the needed references for CloudFormation to function properly.
+Unlike in the previous example we need to maintain a reference to the lambda in order to set an api gateway integration properly. The CDK uses references as inputs to other classes as a way to convey all the needed references for CloudFormation to function properly.
 
-Api gateway is a much more complex resource than lambda, and because of this it takes more moving parts to get it completely wired. We first create the api gateway with a name and description (These are only used for the console and reporting purposes). The we have top create the lambda integration which will allow api gateway to wire our lambda to respond to requests. Last we wire the lambda integration to the `GET` method at the root route (the `/` route).
+Api gateway is a much more complex resource than lambda, and because of this it takes more moving parts to get it completely wired. We first create the api gateway with a name and description (These are only used for the console and reporting purposes). Then we have to create the lambda integration which will allow api gateway to wire our lambda to respond to requests. Last we wire the lambda integration to the `GET` method at the root route (the `/` route).
 
 And with that we have a stack we can deploy!
 
@@ -220,7 +220,7 @@ Before we deploy the stack it's a good idea to make sure the CloudFormation it's
 npm run cdk synth
 ```
 
-The will output all of the CloudFormation the CDK generates to the console. Then we can do a quick review to make sure we're getting everything we were expecting.
+This will output all of the CloudFormation the CDK generates to the console. Then we can do a quick review to make sure we're getting everything we were expecting.
 
 ## Deploying
 
