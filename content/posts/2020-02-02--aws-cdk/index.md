@@ -10,6 +10,10 @@ author: Andy Desmarais
 
 Before we get started, this post is not meant to be an introduction to AWS infrastructure in general. It has the assumption that you are familiar with the basics of AWS.
 
+## Additional Information
+
+I put together [a quick follow up to this article](/aws-cdk-gotchas/) to cover some gotchas, tips and tricks.
+
 ## What the heck is a CDK?
 
 The [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) is an open source development framework designed to help you provision AWS resources using familiar programming languages.
