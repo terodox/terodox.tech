@@ -59,7 +59,7 @@ This allows you to do a "dry run" of your stack without deploying anything. If y
 
 ## Type definitions are your friend
 
-I personally use VS Code for my development environment. The main benefit of doing this with the CDK is clicking through to the Type Definitions for each resource. On a mac Command Click (⌘ + Click), on Windows Ctrl Click (Ctrl + Click), and you will be whisked away to the magical kingdom of knowledge!
+I personally use VS Code for my development environment. The main benefit of doing this with the CDK is "clicking through" to the Type Definitions for each resource. On a mac Command Click (⌘ + Click), on Windows Ctrl Click (Ctrl + Click), and you will be whisked away to the magical kingdom of knowledge!
 
 I've found it most fruitful to look for the `constructor` of the resource I'm creating. Then click through again to the `Props` for the resource. As an example:
 
