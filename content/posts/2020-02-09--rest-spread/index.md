@@ -1,5 +1,5 @@
 ---
-title: "AWS CDK - Gotchas, Tips, and Tricks"
+title: "ES6 Syntax - Array and Object Rest/Spread"
 comments: true
 category: Javascript
 cover: spread.jpg
