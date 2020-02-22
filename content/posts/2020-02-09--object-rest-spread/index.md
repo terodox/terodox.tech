@@ -100,4 +100,30 @@ console.log(composedObject);
 
 Note that the value from the `a` property from object2 is present in the final object, and NOT `a` from object1. This is an important feature, because it allows us to patch properties in an object.
 
+### Patching object properties
 
+Let's say we had an API for songs. The GET endpoint returns us a song object, and the PUT endpoint expects that same shape of object back. We see that there is a mistake in a song, and we need to update the title and the date. We want to follow [immutable](https://en.wikipedia.org/wiki/Immutable_object) practices, so we need to create a new object instead of modifying the one returned from the API.
+
+Using "Spread" and object composition we can accomplish this very quickly without even needing to know all of the other properties on the object.
+
+```javascript
+const songObject = await api.getSongById('zx24fngidlpo');
+
+const updatedSong = {
+  ...songObject,
+  title: 'Fixed title',
+  date: '2004-10-31'
+};
+
+await api.putSong(updatedSong);
+```
+
+As long as we know the `title` and `date` properties are correct we don't have to worry about any other properties. This saves us from tedious object mapping that can also be very error prone. Our tests are simplified because we only need to worry about `title` and `date` now.
+
+## Gotchas
+
+This is an incredibly powerful tool to have, BUT if you are not able to use native code and must babel down for older browsers it can cause bloat. Unfortunately there isn't a simple polyfill for "Rest/Spread", and because of that every time you use it in babeled code, it adds a huge chunk of logic in line. It's unpleasant, but it is reality.
+
+## Wrapping up
+
+"Rest/Spread" is a powerful new big of syntax that take somewhat complex tasks and makes then trivial. The power it provides is as much about readability as it is about write-ability. I encourage you to learn it, and understand it.
