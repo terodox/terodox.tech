@@ -8,7 +8,7 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Jessy Smith](https://unsplash.com/@jessysmith)
 
-The ever progressing ECAM Script standard has brought a lot of awesome new syntax to Javascript. Today I want to focus on a specific part, the `...` operator. This is called the "Rest/Spread" operator. It's hugely powerful, and make both writing and reading code a lot easier for its use cases.
+The ever progressing ECMA Script standard has brought a lot of awesome new syntax to Javascript. Today I want to focus on a specific part, the `...` operator. This is called the "Rest/Spread" operator. It's hugely powerful, and make both writing and reading code a lot easier for its use cases.
 
 ## Array Composition
 
