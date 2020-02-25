@@ -12,7 +12,7 @@ The ever progressing ECMA Script standard has brought a lot of awesome new synta
 
 ## Array Composition
 
-The "Spread" portion of the Rest/Spread operator can help us here. Very similar to how `.concat` functions you can use `...` to spread each array into a new array.
+The "Spread" portion of the Rest/Spread operator can help us here. Very similar to how `.concat` functions, you can use `...` to spread each array into a new array.
 
 ```javascript
 const array1 = [ 1, 2, 3 ];
@@ -35,7 +35,7 @@ console.log(concatArray);
 
 ## Array - Get First Elements
 
-Let's say you need tp pull the first three elements of an array off. We could use the `.shift()` operator to pull the first element from the array three times, but it's a bit verbose. Instead we can use array [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) and "Rest" to pull only the elements we want from the front of the array.
+Let's say you need tp pull the first three elements off of an array. We could use the `.shift()` operator to pull the first element from the array three times, but it's a bit verbose. Instead we can use array [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) and "Rest" to pull only the elements we want from the front of the array.
 
 ```javascript
 const array = [ 'first', 'second', 'third', 'more', 'things'];
@@ -126,4 +126,4 @@ This is an incredibly powerful tool to have, BUT if you are not able to use nati
 
 ## Wrapping up
 
-"Rest/Spread" is a powerful new big of syntax that take somewhat complex tasks and makes then trivial. The power it provides is as much about readability as it is about write-ability. I encourage you to learn it, and understand it.
+"Rest/Spread" is a powerful new bit of syntax that make somewhat complex tasks relatively trivial. The power it provides is as much about readability as it is about write-ability. I encourage you to learn it, and understand it.
