@@ -34,6 +34,7 @@ module.exports = {
   authorSocialLinks: [
     { name: "github", url: "https://github.com/terodox" },
     { name: "twitter", url: "https://twitter.com/terodox" },
-    { name: "facebook", url: "http://facebook.com/terodox" }
+    { name: "facebook", url: "http://facebook.com/terodox" },
+    { name: "linkedin", url: "https://www.linkedin.com/in/terodox/" }
   ]
 };
