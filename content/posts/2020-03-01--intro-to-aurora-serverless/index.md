@@ -38,6 +38,8 @@ We need a VPC for the cluster be started in. The gives us the ability to isolate
 
 Let's walk through the different parts of the CDK stack we need.
 
+We start with creating a Virtual Private Cloud (VPC). This will be the network that our cluster lives in.
+
 ```javascript
 const vpc = new Vpc(this, 'Vpc', {
     cidr: '10.0.0.0/16',
@@ -51,7 +53,64 @@ const vpc = new Vpc(this, 'Vpc', {
 });
 ```
 
+Once that's in we'll need to get all of the subnet ids in order to create a subnet group. This group allows Aurora Serverless to spin up instances in any of our subnets. This is a part of what provides cross availability zone redundancy.
 
+```javascript
+const subnetIds = [];
+vpc.isolatedSubnets.forEach(subnet => {
+    subnetIds.push(subnet.subnetId);
+});
+
+const dbSubnetGroup = new CfnDBSubnetGroup(this, 'AuroraSubnetGroup', {
+    dbSubnetGroupDescription: 'Subnet group to access aurora',
+    dbSubnetGroupName: 'aurora-db-subnet-group',
+    subnetIds
+});
+```
+
+That's it for supporting infrastructure. Now we can create the cluster itself.
+
+```javascript
+const aurora = new CfnDBCluster(this, 'AuroraServerless', {
+    databaseName: 'AuroraExample',
+    dbClusterIdentifier: 'aurora-example',
+    engine: 'aurora',
+    engineMode: 'serverless',
+    masterUsername: 'auroraMaster',
+    // This should be set to a SUPER HIGH entropy secret
+    masterUserPassword: '[Some high entropy password]',
+    // This is out subnet group from above
+    dbSubnetGroupName: dbSubnetGroup.dbSubnetGroupName,
+    backupRetentionPeriod: 35, // 35 days is the current minimum
+    scalingConfiguration: {
+        // Full write up on aurora serverless autoscaling:
+        // https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling
+        autoPause: true, // Allow the db cluster to go offline after being idle
+        secondsUntilAutoPause: 300, // 300 seconds of idle time will then pause the cluster
+        maxCapacity: 256, // Maximum as of writing this (2/29/2020)
+        minCapacity: 1, // This is the smallest it can be
+    },
+    storageEncrypted: true
+});
+```
+
+And last but certainly not least, we need to put a dependency on the subnet group existing before the aurora cluster can be spun up.
+
+```javascript
+// Subnets need to be available before Cluster can be created
+aurora.addDependsOn(dbSubnetGroup);
+```
+
+We can add some stack outputs to make it a little easier to see the resources we've created. Check out the complete CDK example below for those.
+
+## Let's talk about auto scaling
+
+There are a handful of options available to handle auto scaling with Aurora Serverless. The first and most logical is the `minCapacity` and `maxCapacity` which are measured in ACUs (Aurora Capacity Units).
+
+These units are
+
+<details>
+  <summary>Full CDK Example. Click to expand!</summary>
 
 Complete CDK example:
 
@@ -132,3 +191,4 @@ class AuroraDatabaseStack extends cdk.Stack {
 const app = new cdk.App();
 new AuroraDatabaseStack(app, 'aurora-serverless');
 ```
+</details>
