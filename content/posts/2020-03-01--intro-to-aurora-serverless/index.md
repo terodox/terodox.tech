@@ -32,6 +32,103 @@ Setting up an Aurora Serverless Cluster is very similar to how you create a non-
 
 These settings are the basics we need to get our cluster up and running. So let's look at a full CDK stack implementation for standing up an Aurora Serverless Cluster!
 
-```javascript
+## VPC is required
 
+We need a VPC for the cluster be started in. The gives us the ability to isolate the network from public traffic.
+
+Let's walk through the different parts of the CDK stack we need.
+
+```javascript
+const vpc = new Vpc(this, 'Vpc', {
+    cidr: '10.0.0.0/16',
+    natGateways: 0,
+    subnetConfiguration: [
+        {
+            name: 'aurora-isolated-',
+            subnetType: SubnetType.ISOLATED
+        }
+    ]
+});
+```
+
+
+
+Complete CDK example:
+
+```javascript
+const cdk = require('@aws-cdk/core');
+const { CfnDBCluster, CfnDBSubnetGroup } = require('@aws-cdk/aws-rds');
+const { Vpc, SubnetType } = require('@aws-cdk/aws-ec2');
+
+class AuroraDatabaseStack extends cdk.Stack {
+    constructor(scope, id, props) {
+        super(scope, id, props);
+
+        const vpc = new Vpc(this, 'Vpc', {
+            cidr: '10.0.0.0/16',
+            natGateways: 0,
+            subnetConfiguration: [
+                { name: 'aurora-isolated-', subnetType: SubnetType.ISOLATED }
+            ]
+        });
+
+        const subnetIds = [];
+        vpc.isolatedSubnets.forEach(subnet => {
+            subnetIds.push(subnet.subnetId);
+        });
+
+        const dbSubnetGroup = new CfnDBSubnetGroup(this, 'AuroraSubnetGroup', {
+            dbSubnetGroupDescription: 'Subnet group to access aurora',
+            dbSubnetGroupName: 'aurora-db-subnet-group',
+            subnetIds
+        });
+
+        const aurora = new CfnDBCluster(this, 'AuroraServerless', {
+            databaseName: 'AuroraExample',
+            dbClusterIdentifier: 'aurora-example',
+            engine: 'aurora',
+            engineMode: 'serverless',
+            masterUsername: 'auroraMaster',
+            // This should be set to a SUPER HIGH entropy secret
+            masterUserPassword: '[Some high entropy password]',
+            dbSubnetGroupName: dbSubnetGroup.dbSubnetGroupName,
+            backupRetentionPeriod: 35, // 35 days is the current minimum
+            scalingConfiguration: {
+                // Full write up on aurora serverless autoscaling:
+                // https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling
+                autoPause: true, // Allow the db cluster to go offline after being idle
+                secondsUntilAutoPause: 300, // 300 seconds of idle time will then pause the cluster
+                maxCapacity: 256, // Maximum as of writing this (2/29/2020)
+                minCapacity: 1, // This is the smallest it can be
+            },
+            storageEncrypted: true
+        });
+
+        // Subnets need to be available before Cluster can be created
+        aurora.addDependsOn(dbSubnetGroup);
+
+        new cdk.CfnOutput(this, 'VpcSubnetIds', {
+            value: JSON.stringify(subnetIds)
+        });
+
+        new cdk.CfnOutput(this, 'VpcDefaultSecurityGroup', {
+            value: vpc.vpcDefaultSecurityGroup
+        });
+
+        new cdk.CfnOutput(this, 'AuroraClusterArn', {
+            value: `arn:aws:rds:${this.region}:${this.account}:cluster:${aurora.dbClusterIdentifier}`
+        });
+
+        new cdk.CfnOutput(this, 'AuroraEndpoint', {
+            value: aurora.attrEndpointAddress
+        });
+
+        new cdk.CfnOutput(this, 'AuroraPort', {
+            value: aurora.attrEndpointPort
+        });
+    }
+}
+
+const app = new cdk.App();
+new AuroraDatabaseStack(app, 'aurora-serverless');
 ```
