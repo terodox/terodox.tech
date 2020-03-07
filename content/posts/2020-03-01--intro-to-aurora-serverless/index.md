@@ -107,7 +107,27 @@ We can add some stack outputs to make it a little easier to see the resources we
 
 There are a handful of options available to handle auto scaling with Aurora Serverless. The first and most logical is the `minCapacity` and `maxCapacity` which are measured in ACUs (Aurora Capacity Units).
 
-These units are
+These units are a combination of processing and memory capacity. They scale on a fixed system from 1 to 256 where 1 is 2Gb of RAM and 64 is 488Gb of RAM. When you set your min and max capacity you will be allowing Aurora to scale as it sees need for CPU, memory, or connections. It will scale up as quickly as it can to handle the load it is experiencing.
+
+Aurora will not begin scaling down for a minimum of 15 minutes. After that it will continue to scale down every 310 seconds. This should help prevent any "over cooling" and avoid potential unexpected fluctuation.
+
+There are two main scenarios that can prevent scaling from occurring:
+
+- Long running queries or transactions
+- Temp Tables
+- Table locks
+
+## Auto pause
+
+If you are not under a production workload you may want to use the auto pause feature. This will allow Aurora to "go to sleep" after a specific waiting period with no activity. The period of time is specified by `secondsUntilAutoPause`.
+
+**NOTE:** Resuming from being paused takes a while! This can take upwards of 30+ seconds in some cases. This is the biggest reason auto pause should be avoided for production workloads.
+
+## It's worth a look
+
+I hope this has given you a quick intro into Aurora Serverless. There's some gotchas to be aware of, but that will have to wait for my next article!
+
+Below you'll find a collapsed section containing the full CDK code for deploying an Aurora Serverless cluster. I hope this helps you get started with Aurora Serverless today!
 
 <details>
   <summary>Full CDK Example. Click to expand!</summary>
