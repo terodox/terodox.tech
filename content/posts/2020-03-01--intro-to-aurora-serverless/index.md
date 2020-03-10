@@ -34,7 +34,7 @@ These settings are the basics we need to get our cluster up and running. So let'
 
 ## VPC is required
 
-We need a VPC for the cluster be started in. The gives us the ability to isolate the network from public traffic.
+We need a VPC for the cluster to be started in. This gives us the ability to isolate the network from public traffic.
 
 Let's walk through the different parts of the CDK stack we need.
 
@@ -53,7 +53,7 @@ const vpc = new Vpc(this, 'Vpc', {
 });
 ```
 
-Once that's in we'll need to get all of the subnet ids in order to create a subnet group. This group allows Aurora Serverless to spin up instances in any of our subnets. This is a part of what provides cross availability zone redundancy.
+Once that's in, we'll need to get all of the subnet ids in order to create a subnet group. This group allows Aurora Serverless to spin up instances in any of our subnets. This is a part of what provides cross availability zone redundancy.
 
 ```javascript
 const subnetIds = [];
@@ -83,7 +83,7 @@ const aurora = new CfnDBCluster(this, 'AuroraServerless', {
     dbSubnetGroupName: dbSubnetGroup.dbSubnetGroupName,
     backupRetentionPeriod: 35, // 35 days is the current minimum
     scalingConfiguration: {
-        // Full write up on aurora serverless autoscaling:
+        // Full write up on aurora serverless auto scaling:
         // https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling
         autoPause: true, // Allow the db cluster to go offline after being idle
         secondsUntilAutoPause: 300, // 300 seconds of idle time will then pause the cluster
@@ -211,4 +211,5 @@ class AuroraDatabaseStack extends cdk.Stack {
 const app = new cdk.App();
 new AuroraDatabaseStack(app, 'aurora-serverless');
 ```
+
 </details>
