@@ -34,9 +34,6 @@ export default class HTML extends React.Component {
           {this.props.preBodyComponents}
           <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
           {this.props.postBodyComponents}
-
-          <div id="codefund"></div>
-          <script src="https://codefund.io/properties/541/funder.js" async="async"></script>
         </body>
       </html>
     );
