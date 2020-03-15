@@ -1,7 +1,7 @@
 ---
 title: "ES6 Syntax - Array and Object Rest/Spread"
 comments: true
-category: Javascript
+category: JavaScript
 cover: spread.jpg
 author: Andy Desmarais
 ---
