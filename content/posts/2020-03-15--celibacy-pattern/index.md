@@ -1,7 +1,7 @@
 ---
 title: "The Celibacy Pattern"
 comments: true
-category: Javascript
+category: JavaScript
 cover: alone.jpg
 author: Andy Desmarais
 ---
