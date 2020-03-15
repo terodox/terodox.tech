@@ -121,4 +121,4 @@ We can now get a promise that will either resolve to an instance of the class, o
 
 # Wrapping up
 
-So a promise to be a singleton is know as _The Celibacy Patter_. A clever name for a very useful pattern.
+So a promise to be a singleton is known as _The Celibacy Patter_. A clever name for a very useful pattern.
