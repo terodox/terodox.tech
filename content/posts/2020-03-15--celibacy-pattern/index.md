@@ -93,7 +93,7 @@ const PRIVATE_CONSTRUCTOR_VALIDATION = new Symbol('private constructor validatio
 export class TheCelibateSingleton {
   constructor(validation, theNeededResponse) {
     if(validation !== PRIVATE_CONSTRUCTOR_VALIDATION) {
-      throw new Error('This is a private constructor, please user `getInstance` instead');
+      throw new Error('This is a private constructor, please use `getInstance` instead');
     }
     this._theNeededResponse = theNeededResponse;
   }
