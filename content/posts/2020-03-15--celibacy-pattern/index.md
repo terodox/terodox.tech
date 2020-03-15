@@ -30,4 +30,95 @@ The basic idea is we need to guarantee that everyone getting the same instance o
 
 A real world example of this would be a class that requires a user id, but one is not available at page load time. We'll need to a fire a network request to get the required id before a consumer can use any class methods.
 
+## Show me the code
 
+The pattern begins with a variable that is scoped to the classes module, but not exported. The class exposes a `getInstance` method that should be used in place of a constructor for consumers.
+
+```javascript
+let _instance;
+let _instancePromise = null;
+export class TheCelibateSingleton {
+  constructor(theNeededResponse) {
+    this._theNeededResponse = theNeededResponse;
+  }
+
+  async getInstance() {
+    if(!_instancePromise === null) {
+      _instancePromise = someAsynchronousRequest()
+        .then(theNeededResponse => {
+          _instance = new TheCelibateSingleton(theNeededResponse);
+          return _instance;
+        });
+    }
+    return _instancePromise;
+  }
+  //... More class implemented here ...
+}
+```
+
+This unfortunately doesn't handle the case of the async request failing though. For that we need a simple catch block to reset our instance promise.
+
+```javascript
+let _instance;
+let _instancePromise = null;
+export class TheCelibateSingleton {
+  constructor(theNeededResponse) {
+    this._theNeededResponse = theNeededResponse;
+  }
+
+  async getInstance() {
+    if(!_instancePromise === null) {
+      _instancePromise = someAsynchronousRequest()
+        .then(theNeededResponse => {
+          _instance = new TheCelibateSingleton(theNeededResponse);
+          return _instance;
+        })
+        .catch(error => {
+          // Log error somewhere
+          _instancePromise = null;
+          throw error;
+        });
+    }
+    return _instancePromise;
+  }
+  //... More class implemented here ...
+}
+```
+
+The next thing we need to do is make sure you can't actually call the constructor. We do this using the `Symbol` class which guarantees each constructed version to be unique. Using symbol we can lock down the constructor to only be used internally.
+
+```javascript
+let _instance;
+const PRIVATE_CONSTRUCTOR_VALIDATION = new Symbol('private constructor validation');
+export class TheCelibateSingleton {
+  constructor(validation, theNeededResponse) {
+    if(validation !== PRIVATE_CONSTRUCTOR_VALIDATION) {
+      throw new Error('This is a private constructor, please user `getInstance` instead');
+    }
+    this._theNeededResponse = theNeededResponse;
+  }
+
+  async getInstance() {
+    if(!_instancePromise === null) {
+      _instancePromise = someAsynchronousRequest()
+        .then(theNeededResponse => {
+          _instance = new TheCelibateSingleton(PRIVATE_CONSTRUCTOR_VALIDATION, theNeededResponse);
+          return _instance;
+        })
+        .catch(error => {
+          // Log error somewhere
+          _instancePromise = null;
+          throw error;
+        });
+    }
+    return _instancePromise;
+  }
+  //... More class implemented here ...
+}
+```
+
+We can now get a promise that will either resolve to an instance of the class, or reject if creating the class fails. As many different entry points as needed can request an instance and they will all receive the same promise. This can save a lot of network traffic for a service that is used regularly.
+
+# Wrapping up
+
+So a promise to be a singleton is know as _The Celibacy Patter_. A clever name for a very useful pattern.
