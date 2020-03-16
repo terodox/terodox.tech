@@ -24,11 +24,11 @@ In a pure javascript frame of mind, singletons are one way to have a guaranteed 
 
 ## The Celibacy Pattern
 
-I have to give all of the credit for the name of this pattern to Joseph Theriault ([@JosephTheriault](https://twitter.com/JosephTheriault)) who coined the term after we had used it several times.
+I have to give all of the credit for the name of this pattern to Joseph Theriault ([@JosephTheriault](https://twitter.com/JosephTheriault)) who coined the term after we had used this pattern several times.
 
 The basic idea is we need to guarantee everyone is getting the same instance of a class, even when an asynchronous request is required to instantiate it. This is especially important when the async call is a costly network request.
 
-A real world example of this would be a class that requires a user id, but one is not available at page load time. We'll need to a fire a network request to get the required id before a consumer can use any class methods, and we want to make sure it's fired once, and only once.
+A real world example would be a class that requires a user id, but one is not available at page load time. We'll need to a fire a network request to get the required id before a consumer can use any class methods, and we want to make sure it's fired once, and only once.
 
 ## Show me the code
 
