@@ -42,8 +42,8 @@ export class TheCelibateSingleton {
     this._theNeededResponse = theNeededResponse;
   }
 
-  async getInstance() {
-    if(!_instancePromise === null) {
+  static async getInstance() {
+    if(_instancePromise !== null) {
       _instancePromise = someAsynchronousRequest()
         .then(theNeededResponse => {
           _instance = new TheCelibateSingleton(theNeededResponse);
@@ -66,8 +66,8 @@ export class TheCelibateSingleton {
     this._theNeededResponse = theNeededResponse;
   }
 
-  async getInstance() {
-    if(!_instancePromise === null) {
+  static async getInstance() {
+    if(_instancePromise !== null) {
       _instancePromise = someAsynchronousRequest()
         .then(theNeededResponse => {
           _instance = new TheCelibateSingleton(theNeededResponse);
@@ -89,7 +89,8 @@ The next thing we need to do is make sure you can't actually call the constructo
 
 ```javascript
 let _instance;
-const PRIVATE_CONSTRUCTOR_VALIDATION = new Symbol('private constructor validation');
+let _instancePromise = null;
+const PRIVATE_CONSTRUCTOR_VALIDATION = Symbol('private constructor validation');
 export class TheCelibateSingleton {
   constructor(validation, theNeededResponse) {
     if(validation !== PRIVATE_CONSTRUCTOR_VALIDATION) {
@@ -98,8 +99,8 @@ export class TheCelibateSingleton {
     this._theNeededResponse = theNeededResponse;
   }
 
-  async getInstance() {
-    if(!_instancePromise === null) {
+  static async getInstance() {
+    if(_instancePromise !== null) {
       _instancePromise = someAsynchronousRequest()
         .then(theNeededResponse => {
           _instance = new TheCelibateSingleton(PRIVATE_CONSTRUCTOR_VALIDATION, theNeededResponse);
@@ -119,6 +120,50 @@ export class TheCelibateSingleton {
 
 We can now get a promise that will either resolve to an instance of the class, or reject if creating the class fails. As many different entry points as needed can request an instance and they will all receive the same promise. This can save a lot of network traffic for a service that is used regularly.
 
-# Wrapping up
+## A different approach
+
+An idea for an improvement was presented by [nikcorg](https://www.reddit.com/user/nikcorg/) and clarified for me by [stevethedev](https://www.reddit.com/user/stevethedev/). They suggested using a module scoped initializer to handle the problem of the private constructor. This makes the code look cleaner and makes the constructor safety unnecessary. Here's what that would look like:
+
+```javascript
+let _instance;
+let _instancePromise = null;
+
+export async function getInstance() {
+  if(_instancePromise !== null) {
+    _instancePromise = someAsynchronousRequest()
+      .then(theNeededResponse => {
+        _instance = new TheCelibateSingleton(theNeededResponse);
+        return _instance;
+      })
+      .catch(error => {
+        // Log error somewhere
+        _instancePromise = null;
+        throw error;
+      });
+  }
+  return _instancePromise;
+}
+
+class TheCelibateSingleton {
+  constructor(validation, theNeededResponse) {
+    this._theNeededResponse = theNeededResponse;
+  }
+
+  //... More class implemented here ...
+}
+```
+
+## Wrapping up
 
 So a promise to be a singleton is known as _The Celibacy Patter_. A clever name for a very useful pattern.
+
+## Addendum
+
+A **HUGE** THANK YOU to all of te help I got from reddit on correcting some mistakes in this post. Thank you to:
+
+- [pt7892](https://www.reddit.com/user/pt7892/)
+- [nemoload](https://www.reddit.com/user/nemoload/)
+- [ParadoxDC](https://www.reddit.com/user/ParadoxDC/)
+- [stevethedev](https://www.reddit.com/user/stevethedev/)
+
+You all helped make sure my code sucked a little less, and for the I am grateful.
