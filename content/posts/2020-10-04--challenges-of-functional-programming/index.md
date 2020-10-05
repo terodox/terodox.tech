@@ -60,10 +60,8 @@ Honestly I'm still struggling here. How can this be boiled down into a more main
 Here's a list of my _"bad ideas"_:
 
 - Take all of the parameters in the second function to eliminate the first.
-  - Pros:
-    - At minimum eliminates one of the nested functions
-  - Cons:
-    - Ultimately doesn't solve the problem of how to find the inner functions uses.
+  - Pro: At minimum eliminates one of the nested functions
+  - Con: Ultimately doesn't solve the problem of how to find the inner functions uses.
 
 ```javascript
 export const createWidget => ({
@@ -78,10 +76,8 @@ export const createWidget => ({
 ```
 
 - Move to a class based system.
-  - Pros:
-    - Code is now fully discoverable based on the name of the method in the class. I can grep for `createWidet` and find it everywhere it's used
-  - Cons:
-    - I've introduced state into the code. In general can cause some headaches with making sure we clean up after ourselves.
+  - Pro: Code is now fully discoverable based on the name of the method in the class. I can grep for `createWidet` and find it everywhere it's used
+  - Con: I've introduced state into the code. In general can cause some headaches with making sure we clean up after ourselves.
 
 ```javascript
 export class WidgetMaker {
