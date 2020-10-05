@@ -29,7 +29,6 @@ export const createWidgetFactory = ({
 
 I read this over a few times, and began to immediately question my sanity. It's a function that returns a function which creates a function that does some work.
 
-Wat?
 ![wat](wat.gif)
 
 Now after looking through the code where this is used I can find a reasonably logical separation of concerns. The first portion of the function chain is grabbing "pure functions". The function returned is then passed other functions that have side effects. The third function is then doing the work based on the closure provided by the first two functions. That was a mouthful.
