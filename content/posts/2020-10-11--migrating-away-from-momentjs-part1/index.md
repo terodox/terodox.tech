@@ -14,9 +14,9 @@ MomentJs recently announced that [the library is now deprecated](https://momentj
 
 The start of any journey to replace a deprecated library has to begin with finding a replacement. In the case of moment, this is no trivial task. Moment offers a lot of functionality, and when combined with moment-timezone, the challenge is even greater.
 
-Let's talk about my particular use case. The approach my team has chosen to deliver our web application is following the [Immutable Web Apps](https://immutablewebapps.org/) philosophy.The TL;DR here is assets are delivered using a fully qualified version of dependencies and built assets. This helps ensure the only changes between staging and production are basic configuration values.
+Let's talk about my particular use case. My team chooses to deploy our web apps following the [Immutable Web Apps](https://immutablewebapps.org/) philosophy. The TL;DR here is that we deliver fully qualified versions of dependencies and built assets. This helps ensure the only changes between staging and production are basic configuration values. Read more about it [here](https://immutablewebapps.org/).
 
-The other major consideration is that I work for an international company with clients in 13 different languages and even more different timezones. Localization, timezone, and offset support are all critical.
+The other major consideration is that I work for an international company with clients in 13 different languages, and countless timezones. Localization, timezone, and offset support are all critical.
 
 With that in mind let's check out the contenders.
 
@@ -68,13 +68,14 @@ What we tested:
   - Starting in DST and adding time to end up in DST
   - Starting outside DST and adding time to end up outside DST
 
+Well. That was exhausting...
 ![exhausted](exhausted.gif)
 
 We first started by writing the test suite against moment to have a "static" source of truth for values we trusted. This yielded a set of function names that we then needed to fulfill with day.js and luxon.
 
 ## Ding! Ding! Ding! We have a winner!
 
-This test suite proved invaluable. We were able to learn how both libraries worked for our uses cases as well as finding a critical failure in day.js.
+This test suite proved invaluable. We were able to learn how both libraries worked for our use cases as well as finding a critical failure in day.js.
 
 It turns out the day.js does not support daylight savings time very well, and there are [numerous open issues](https://github.com/iamkun/dayjs/issues?q=is%3Aissue+is%3Aopen+DST+OR+%22daylight%22) around it on the repo. The most critical of which does not calculate offset properly when entering or leaving DST.
 
