@@ -45,7 +45,7 @@ Once we compiled our list of options, we got the bundle size for each of the pac
 
 The next step is to vet the remaining two libraries for the functionality we need. The best way we could come up with to accomplish this is to write a test suite to exercise moment's features, then run each library through that gauntlet.
 
-What we tested:
+What we tested: ([It's open sourced!](https://github.com/terodox/mirgrating-away-from-momentjs#readme))
 
 - basics
   - Parsing dates
