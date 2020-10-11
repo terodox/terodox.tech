@@ -69,6 +69,7 @@ What we tested: ([It's open sourced!](https://github.com/terodox/mirgrating-away
   - Starting outside DST and adding time to end up outside DST
 
 Well. That was exhausting...
+
 ![exhausted](exhausted.gif)
 
 We first started by writing the test suite against moment to have a "static" source of truth for values we trusted. This yielded a set of function names that we then needed to fulfill with day.js and luxon.
