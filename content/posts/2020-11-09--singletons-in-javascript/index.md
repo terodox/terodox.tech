@@ -1,5 +1,5 @@
 ---
-title: "Singletons in the browser"
+title: "Singletons in javascript"
 comments: true
 category: JavaScript
 cover: singleton.jpg
