@@ -23,7 +23,7 @@ To move logically between slides, we first need to establish some semantic marku
 </main>
 ```
 
-With this basic html styling our slides in a _snap_.
+With this basic html, styling our slides is a _snap_!
 
 ```css
 body {
@@ -44,11 +44,11 @@ section {
 }
 ```
 
-This establishes out basic scrolling setup. Now we need to allow some basic user controls for scrolling. We'll be utilizing [`scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo), but unfortunately there's no IE11 support for it 😢.
+This establishes our basic scrolling setup. Now we need to allow some basic user controls for scrolling. We'll be utilizing [`scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo), but unfortunately there's no IE11 support for it 😢.
 
 ## element.scrollTo()
 
-We need to establish a an event listener to listen to keyboard events in javascript.
+We need to create an event listener to listen to keyboard events in javascript.
 
 ```javascript
 document.addEventListener('keydown', (event) => {
