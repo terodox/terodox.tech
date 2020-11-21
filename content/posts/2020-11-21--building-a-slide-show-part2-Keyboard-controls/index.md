@@ -8,7 +8,7 @@ author: Andy Desmarais
 
 ###### Cover photo credit: [Madhu Shesharam](https://unsplash.com/@madhu_shesharam)
 
-In the [last article](/building-a-slide-show-part1-scroll-snap/) we covered the how to keep a single full slide visible as the user is scrolling. Now we need to bring in some basic slide controls.
+In the [last article](/building-a-slide-show-part1-scroll-snap/) we covered the how to keep a single full slide visible as the user is scrolling. Now we need to bring in some basic keyboard controls.
 
 ## Let's start with the basics
 
