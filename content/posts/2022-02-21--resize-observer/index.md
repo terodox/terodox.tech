@@ -14,13 +14,13 @@ My hope with this article is to give a general overview of the [ResizeObserver](
 
 ## Controlling the uncontrollable
 
-Responsive design is a fundamental building block of any web application these days. We need to handle a wide variety of screen sizes, especially mobile. With that in mind we need to have similar controls to those offered by `@media` queries in CSS, but at the element level. Moreover we need to control elements that may not be easily styled by CSS, a chart for example. Rendering the same chart on a mobile device and on an ultra wide screen 4k+ monitor will require much different settings for things like labels and legends.
+Responsive design is a fundamental building block of any web application these days. We need to handle a wide variety of screen sizes, especially mobile. With that in mind, we need to have similar controls to those offered by `@media` queries in CSS, but at the element level. Moreover we need to control elements that may not be easily styled by CSS, a chart for example. Rendering the same chart on a mobile device and on an ultra wide screen 4k+ monitor will require much different settings for things like labels and legends.
 
 ## The basics
 
 The [ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) is a browser API that offers the ability to watch one or more elements and take an action when their container changes size.
 
-The constructor takes a single parameter of a `callback` that will be invoked with an array of [ResizeObserverEntries](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry) each time any observed element's container changes size. This means if we have are observing 3 elements and only 1 changes dimensions, the array will only contain the 1 element that changed. Each entry has information about the element that is being observed:
+The constructor takes a single parameter of a `callback` that will be invoked with an array of [ResizeObserverEntries](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry) each time any observed element's container changes size. This means if we have an observing 3 elements and only 1 changes dimensions, the array will only contain the 1 element that changed. Each entry has information about the element that is being observed:
 
 - borderBoxSize
 - contentBoxSize
@@ -61,7 +61,7 @@ The code above will ensure that we are not running our code on every frame and i
 
 ### Execution skips
 
-We can also force our system to skip executions if they are happening too close together. This allows our redraw rate to stay higher even if out execution is taking longer than 16.7ms.
+We can also force our system to skip executions if they are happening too close together. This allows our redraw rate to stay higher even if our execution is taking longer than 16.7ms.
 
 ```javascript
 const functionToExecute = (entries) => { /* Some code to execute */ };
@@ -84,11 +84,11 @@ This technique allows our code to execute even if the browser is calling it more
 
 ### Long updates mean ghosting
 
-When we have an update that can take much longer (a full second 😱), then we should consider ghosting the element that is changing instead of attempting to redraw it as the element is changing size. This can give a much smoother transition for the user, and avoid jitter altogether. Here's an example of how we can accomplish that:
+When we have an update that can take much longer (a full second 😱), then we should consider using a skeleton.A skeleton take up the DOM space that the final render will occupy, but instead of rendering content, we replace it with something lighter weight. This can give a much smoother transition for the user, and avoid jitter altogether. Here's an example of how we can accomplish that:
 
-<iframe height="350" style="width: 100%;" scrolling="no" title="ResizeObserver - Ghosting" src="https://codepen.io/terodox/embed/preview/NWwqQgb?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="350" style="width: 100%;" scrolling="no" title="ResizeObserver - Skeleton loading" src="https://codepen.io/terodox/embed/preview/NWwqQgb?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/terodox/pen/NWwqQgb">
-  ResizeObserver - Ghosting</a> by Andy Desmarais (<a href="https://codepen.io/terodox">@terodox</a>)
+  ResizeObserver - Skeleton loading</a> by Andy Desmarais (<a href="https://codepen.io/terodox">@terodox</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
